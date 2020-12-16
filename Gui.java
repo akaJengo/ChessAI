@@ -23,6 +23,8 @@ import javax.swing.LayoutStyle;
  */
 public class Gui extends JFrame {
     MyPanel panel;
+    Rules rules;
+    Board board;
     
     char [][]places;
     
@@ -65,6 +67,8 @@ public class Gui extends JFrame {
 
     public Gui() {
         build();
+        board = new Board();
+        board.addPieces();
     }
 
     // <editor-fold defaultstate="collapsed" desc="GUI CODE">              
@@ -351,9 +355,10 @@ public class Gui extends JFrame {
         
     }// </editor-fold>   
     
-    public void next(char[][]places){
+    public char[][] next(char[][]places){
         this.places = places;
         panel.repaint();
+        return this.places;
     }
     
     private void submit() {
@@ -369,8 +374,29 @@ public class Gui extends JFrame {
         txtFrom.setText("");
         this.places[num][value] = this.places [numFrom][valueFrom];
         this.places[numFrom][valueFrom] = ' ';
+        updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
     } 
+    
+    public void updateSpots(Board board, int fromx, int fromy, int tox, int toy){
+        board.board[tox][toy] = board.board[fromx][fromy];
+        board.board[fromx][fromy]=null;
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                try{
+                   System.out.print(board.board[i][j].getType()+" "); 
+                }catch(Exception e){
+                    System.out.print("  ");
+                }
+                
+            }
+            System.out.println("");
+        }
+    }
+    
+    public Board getBoard(){
+        return this.board;
+    }
     
     private int getValue(char letter){
         int val = 8;

@@ -4,13 +4,9 @@
 package ChessAI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -19,14 +15,30 @@ public class ChessAI {
     Gui g;
     MyPanel pan;
     char[][] places;
+    Board board;
     
     public ChessAI() {
         places = new char[8][8];
+        board = new Board();
+        board.addPieces();
         reset();
         g = new Gui();
         g.next(places);
-
+        board = g.getBoard();
+        for(;;){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                try{
+                    System.out.print(board.board[i][j].getType()+" "); 
+                }catch(Exception e){
+                    
+                }
+            }
+            System.out.println(" "); 
+        }
+        }
     }
+   
     
     private void reset(){
         char[] spots = {'r','k','b','q','k','b','k','r'};
