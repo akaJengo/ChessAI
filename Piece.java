@@ -20,6 +20,10 @@ public class Piece {
     this.white = isWhite;
     this.value = getValue();
   }
+  
+  public boolean getColor(){
+    return this.white; 
+  }
 
   public char getType() {
     return this.type;
