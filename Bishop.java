@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+//package ChessAI;
 
 /**
  *
@@ -11,14 +11,23 @@ package ChessAI;
  */
 public class Bishop extends Piece {
     char type = 'B';
+
     public Bishop(boolean isWhite) {
         super(isWhite);
     }
+
     @Override
-    public char getType(){
+    public char getType() {
         return this.type;
     }
-    public void move(){
-        
+
+    @Override
+    public double getValue() {
+        this.value = 3.33;
+        return this.value;
+    }
+
+    public void move() {
+
     }
 }

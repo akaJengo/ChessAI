@@ -3,26 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
-
-
+//package ChessAI;
 
 /**
  *
  * @author Aidan Larock
  */
-public class Queen extends Piece{
+public class Queen extends Piece {
     char type = 'Q';
+
     public Queen(boolean isWhite) {
         super(isWhite);
-        
+
     }
+
     @Override
-    public char getType(){
+    public char getType() {
         return this.type;
     }
-    public void move(){
-        
+
+    @Override
+    public double getValue() {
+        this.value = 8.8;
+        return this.value;
     }
-    
+
+    public void move() {
+
+    }
+
 }
