@@ -1,9 +1,9 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessgui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,11 +19,11 @@ import javax.swing.LayoutStyle;
  * @author Aidan Larock
  */
 public class Gui extends JFrame {
-    
+
     private JButton btnReset;
     private JButton btnStart;
     private JButton btnStop;
-    
+
     private JLabel S1;
     private JLabel S2;
     private JLabel S3;
@@ -40,34 +40,32 @@ public class Gui extends JFrame {
     private JLabel SF;
     private JLabel SG;
     private JLabel SH;
-    
+
     private JPanel pnlMain;
     private JPanel pnlBoard;
 
-
     private JSeparator jSeparator2;
     private JSeparator jSeparator3;
-    
+
     private JPanel pnlLetters;
     private JPanel pnlSide;
-    
+
     private JPanel pnlButtons;
     private JPanel pnlTop;
     private JTextField txtFrom;
     private JTextField txtTo;
 
-
     public Gui() {
         build();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="GUI CODE">              
+    // <editor-fold defaultstate="collapsed" desc="GUI CODE">
     private void build() {
 
         pnlMain = new JPanel();
         pnlLetters = new JPanel();
         pnlBoard = new JPanel();
-        
+
         SA = new JLabel();
         SB = new JLabel();
         SC = new JLabel();
@@ -76,9 +74,9 @@ public class Gui extends JFrame {
         SF = new JLabel();
         SG = new JLabel();
         SH = new JLabel();
-        
+
         pnlSide = new JPanel();
-        
+
         S1 = new JLabel();
         S2 = new JLabel();
         S3 = new JLabel();
@@ -107,16 +105,11 @@ public class Gui extends JFrame {
         GroupLayout pnlBoardLayout = new GroupLayout(pnlBoard);
         pnlBoard.setLayout(new GridLayout(8, 8));
         pnlBoardLayout.setHorizontalGroup(
-            pnlBoardLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
-        );
+                pnlBoardLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, 808, Short.MAX_VALUE));
         pnlBoardLayout.setVerticalGroup(
-            pnlBoardLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
-        );
+                pnlBoardLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGap(0, 385, Short.MAX_VALUE));
 
-
-        pnlSide.setLayout(new GridLayout(8,1));
+        pnlSide.setLayout(new GridLayout(8, 1));
         pnlSide.setBackground(new Color(255, 255, 255));
 
         S1.setText("1");
@@ -142,8 +135,8 @@ public class Gui extends JFrame {
 
         S8.setText("8");
         pnlSide.add(S8);
-        
-        pnlLetters.setLayout(new GridLayout(1,8));
+
+        pnlLetters.setLayout(new GridLayout(1, 8));
 
         SA.setBackground(new Color(255, 255, 255));
         SA.setFont(new Font("Tahoma", 1, 12)); // NOI18N
@@ -193,37 +186,35 @@ public class Gui extends JFrame {
         SH.setText("H");
         pnlLetters.add(SH);
 
-
         GroupLayout pnlMainLayout = new GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
-        pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+        pnlMainLayout.setHorizontalGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createSequentialGroup().addContainerGap()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 
-                    .addComponent(pnlLetters, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pnlLetters, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
 
-                    .addComponent(pnlBoard, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlSide, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addContainerGap()
+                                .addComponent(pnlBoard, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(pnlSide,
+                                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()));
+        pnlMainLayout.setVerticalGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createSequentialGroup().addContainerGap()
 
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlBoard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlSide, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(pnlBoard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
+                                .addComponent(pnlSide, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 
-                .addComponent(pnlLetters, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                        .addComponent(pnlLetters, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()));
 
         pnlTop.setBackground(new Color(255, 255, 255));
         pnlMain.setBackground(new Color(255, 255, 255));
@@ -231,9 +222,8 @@ public class Gui extends JFrame {
         pnlLetters.setBackground(new Color(255, 255, 255));
         pnlButtons.setBackground(new Color(255, 255, 255));
         pnlBoard.setBackground(new Color(240, 240, 240));
-        pnlBoard.setLayout(new GridLayout(8,8));
-        
-        
+        pnlBoard.setLayout(new GridLayout(8, 8));
+
         btnStart.setText("Start");
 
         btnStop.setText("Stop");
@@ -242,31 +232,31 @@ public class Gui extends JFrame {
 
         GroupLayout pnlButtonsLayout = new GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
-        pnlButtonsLayout.setHorizontalGroup(
-            pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, pnlButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2)
-                    .addGroup(pnlButtonsLayout.createSequentialGroup()
-                        .addComponent(btnStart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        pnlButtonsLayout.setHorizontalGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(GroupLayout.Alignment.TRAILING,
+                        pnlButtonsLayout.createSequentialGroup().addContainerGap()
+                                .addGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jSeparator2)
+                                        .addGroup(pnlButtonsLayout.createSequentialGroup()
+                                                .addComponent(btnStart, GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnStop, GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnReset, GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap()));
+        pnlButtonsLayout.setVerticalGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(pnlButtonsLayout.createSequentialGroup().addContainerGap()
+                        .addGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(btnReset, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                                .addComponent(btnStop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
+                                .addComponent(btnStart, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnStop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReset, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlButtonsLayout.setVerticalGroup(
-            pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pnlButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlButtonsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReset, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(btnStop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStart, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE))
-        );
+                        .addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)));
 
         txtFrom.setHorizontalAlignment(JTextField.CENTER);
         txtFrom.setText("");
@@ -276,49 +266,41 @@ public class Gui extends JFrame {
         txtTo.setText("");
         txtTo.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
 
-
         jSeparator3.setOrientation(SwingConstants.VERTICAL);
 
         GroupLayout pnlTopLayout = new GroupLayout(pnlTop);
         pnlTop.setLayout(pnlTopLayout);
-        pnlTopLayout.setHorizontalGroup(
-            pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(pnlButtons, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlTopLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtFrom)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTo)
-                .addContainerGap())
-        );
-        pnlTopLayout.setVerticalGroup(
-            pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTopLayout.createSequentialGroup()
-                .addComponent(pnlButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTo)
-                    .addComponent(txtFrom, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jSeparator3))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlTopLayout.setHorizontalGroup(pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(pnlButtons, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlTopLayout.createSequentialGroup().addContainerGap().addComponent(txtFrom)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(txtTo)
+                        .addContainerGap()));
+        pnlTopLayout
+                .setVerticalGroup(pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlTopLayout.createSequentialGroup()
+                                .addComponent(pnlButtons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtTo)
+                                        .addComponent(txtFrom, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                                        .addComponent(jSeparator3))
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlMain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlMain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(pnlTop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlMain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pnlTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlMain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         setTitle("Chess Game");
         pack();
         setSize(700, 700);
@@ -326,8 +308,5 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         setVisible(true);
-        
-    }// </editor-fold>                        
-
-              
+    }// </editor-fold>
 }

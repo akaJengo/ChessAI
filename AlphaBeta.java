@@ -4,6 +4,7 @@
 public class AlphaBeta {
 
     Heuristics h;
+    Board b;
 
     AlphaBeta() {
         h = new Heuristics();
