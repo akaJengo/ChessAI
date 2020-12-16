@@ -10,17 +10,19 @@ public class AlphaBeta {
         h = new Heuristics();
     }
 
-    public Board alphaBetaSearch(Board b) {
-        int val = maxValue(b, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public Board alphaBetaSearch(Piece b, int depth) {
+        int val = maxValue(b, Integer.MIN_VALUE, Integer.MAX_VALUE, depth);
         b.val = val;
         return b;
     }
 
-    public int maxValue(Board b, int alpha, int beta) {
+    public int maxValue(Piece b, int alpha, int beta, int depth) {
         int val = Integer.MIN_VALUE;
-
+        if (depth == 0) {
+            return h.evaluate(b, true);
+        }
         for (int i = 0; i < 0; i++) { // need to be for each child of the node, i.e for move in moves.
-            val = Math.max(val, minValue(b, alpha, beta));
+            val = Math.max(val, minValue(b, alpha, beta, depth - 1));
             if (val >= beta) {
                 return val;
             }
@@ -29,11 +31,13 @@ public class AlphaBeta {
         return val;
     }
 
-    public int minValue(Board b, int alpha, int beta) {
+    public int minValue(Piece b, int alpha, int beta, int depth) {
         int val = Integer.MAX_VALUE;
-
+        if (depth == 0) {
+            return h.evaluate(b, false);
+        }
         for (int i = 0; i < 0; i++) {
-            val = Math.min(val, maxValue(b, alpha, beta));
+            val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
 
             if (val <= alpha) {
                 return val;
