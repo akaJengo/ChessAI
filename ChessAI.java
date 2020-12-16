@@ -3,8 +3,11 @@
  */
 public class ChessAI {
 
+    AlphaBeta ab;
+    Board b;
+
     public ChessAI() {
-        System.out.println("");
+        Board score = ab.alphaBetaSearch(b);
 
     }
 
