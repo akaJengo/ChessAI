@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package ChessAI;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.GroupLayout;
@@ -19,6 +22,9 @@ import javax.swing.LayoutStyle;
  * @author Aidan Larock
  */
 public class Gui extends JFrame {
+    MyPanel panel;
+    
+    char [][]places;
     
     private JButton btnReset;
     private JButton btnStart;
@@ -95,7 +101,21 @@ public class Gui extends JFrame {
         btnReset = new JButton();
         jSeparator2 = new JSeparator();
         txtFrom = new JTextField();
+        Action action = new AbstractAction(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(txtFrom.getText().equals("")||txtTo.getText().equals("")){
+                    txtFrom.setText("");
+                    txtTo.setText("");
+                }else{
+                    submit();
+                }
+            }
+        };
+        txtFrom.addActionListener( action );
         txtTo = new JTextField();
+        txtTo.addActionListener( action );
         jSeparator3 = new JSeparator();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -231,8 +251,10 @@ public class Gui extends JFrame {
         pnlLetters.setBackground(new Color(255, 255, 255));
         pnlButtons.setBackground(new Color(255, 255, 255));
         pnlBoard.setBackground(new Color(240, 240, 240));
-        pnlBoard.setLayout(new GridLayout(8,8));
+        pnlBoard.setLayout(new GridLayout());
         
+        panel=new MyPanel(this);
+        pnlBoard.add(panel);
         
         btnStart.setText("Start");
 
@@ -321,13 +343,65 @@ public class Gui extends JFrame {
         );
         setTitle("Chess Game");
         pack();
-        setSize(700, 700);
+        setSize(694, 754);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icon.png")));
         setVisible(true);
         
-    }// </editor-fold>                        
+    }// </editor-fold>   
+    
+    public void next(char[][]places){
+        this.places = places;
+        panel.repaint();
+    }
+    
+    private void submit() {
+        String from = txtFrom.getText();
+        char letter = from.charAt(0);
+        int numFrom = -1*(Character.getNumericValue(from.charAt(1))-8);
+        int valueFrom = getValue(letter);
+        String to = txtTo.getText();
+        letter = to.charAt(0);
+        int num = -1*(Character.getNumericValue(to.charAt(1))-8);
+        int value = getValue(letter);
+        txtTo.setText("");
+        txtFrom.setText("");
+        this.places[num][value] = this.places [numFrom][valueFrom];
+        this.places[numFrom][valueFrom] = ' ';
+        next(this.places);
+    } 
+    
+    private int getValue(char letter){
+        int val = 8;
+        switch (letter) {
+                    case 'a':
+                        val = 0;
+                        break;
+                    case 'b':
+                        val = 1;
+                        break;
+                    case 'c':
+                        val = 2;
+                        break;
+                    case 'd':
+                        val = 3;
+                        break;
+                    case 'e':
+                        val = 4;
+                        break;
+                    case 'f':
+                        val = 5;
+                        break;
+                    case 'g':
+                        val = 6;
+                        break;
+                    case 'h':
+                        val = 7;
+                        break;
+                } 
+        return val;
+    }
 
               
 }
