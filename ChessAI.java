@@ -9,7 +9,7 @@ public class ChessAI {
     }
 
     public static void main(String[] args) {
-        Gui g = new Gui();
+        new Gui();
         new ChessAI();
     }
 }
