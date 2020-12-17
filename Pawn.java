@@ -50,6 +50,9 @@ public class Pawn extends Piece {
         if(board.board[x+forewards(isWhite)][y-1]!=null){
             this.moves[x+forewards(isWhite)][y-1] = true;
         }
+        if(board.board[x+forewards(isWhite)][y]!=null){
+            this.moves[x+forewards(isWhite)][y] = false;
+        }
         this.start = false;
         return this.moves;
     }
