@@ -17,6 +17,8 @@ public class ChessAI {
     MyPanel pan;
     char[][] places;
     Board board;
+    Piece piece;
+    Pawn pawn;
     
     public ChessAI() {
         places = new char[8][8];
@@ -26,11 +28,13 @@ public class ChessAI {
         g = new Gui();
         g.next(places);
         board = g.getBoard();
+        piece = board.board[6][1];
+        piece.getMoves(6, 1,board);
     }
    
     
     private void reset(){
-        char[] spots = {'r','k','b','q','k','b','k','r'};
+        char[] spots = {'r','k','b','q','l','b','k','r'};
         for(int i=0;i<places.length;i++){
             places[1][i] = 'P';
         }
@@ -56,6 +60,8 @@ public class ChessAI {
 }
 
 class MyPanel extends JPanel {
+    Board b;
+    Piece p;
     Gui board;
     char[][] places;
     MyPanel(Gui board) {     
@@ -100,8 +106,8 @@ class MyPanel extends JPanel {
             }
         }
         for(int y=0;y<board.places.length;y++){
-            for(int x=0;x<board.places.length;x++){
-                char peice = board.places[x][y];
+            for(int x=0;x<this.board.places.length;x++){
+                char peice = this.board.places[x][y];
                 image = getPiece(peice);
                 g.drawImage(image,xSpot[y]+16,ySpot[x]+16, null);
             }
@@ -116,7 +122,7 @@ class MyPanel extends JPanel {
                             image = ImageIO.read(getClass().getResource("images/pawnB.png"));
                         } catch (IOException ex) {}
                         break;
-                    case 'K':
+                    case 'L':
                         try {
                             image = ImageIO.read(getClass().getResource("images/kingB.png"));
                         } catch (IOException ex) {}
@@ -131,6 +137,11 @@ class MyPanel extends JPanel {
                             image = ImageIO.read(getClass().getResource("images/rookB.png"));
                         } catch (IOException ex) {}
                         break;
+                    case 'K':
+                        try {
+                            image = ImageIO.read(getClass().getResource("images/knightB.png"));
+                        } catch (IOException ex) {}
+                        break;
                     case 'Q':
                         try {
                             image = ImageIO.read(getClass().getResource("images/queenB.png"));
@@ -142,6 +153,11 @@ class MyPanel extends JPanel {
                         } catch (IOException ex) {}
                         break;
                     case 'k':
+                        try {
+                            image = ImageIO.read(getClass().getResource("images/knight.png"));
+                        } catch (IOException ex) {}
+                        break;
+                    case 'l':
                         try {
                             image = ImageIO.read(getClass().getResource("images/king.png"));
                         } catch (IOException ex) {}
