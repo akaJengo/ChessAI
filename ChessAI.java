@@ -5,6 +5,7 @@ package ChessAI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -25,18 +26,6 @@ public class ChessAI {
         g = new Gui();
         g.next(places);
         board = g.getBoard();
-        for(;;){
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                try{
-                    System.out.print(board.board[i][j].getType()+" "); 
-                }catch(Exception e){
-                    
-                }
-            }
-            System.out.println(" "); 
-        }
-        }
     }
    
     
@@ -85,8 +74,15 @@ class MyPanel extends JPanel {
      */
     @Override
     public void paintComponent(Graphics g) {
-        int[] xSpot = {0,80,160,240,320,400,480,560};
-        int[] ySpot = {0,70,140,210,280,350,420,490};
+        int width = board.panel.getWidth();
+        int height = board.panel.getHeight();
+
+        int space = width/8;
+        int spaceH = height/8;
+
+        int[] xSpot = {0,space,space*2,space*3,space*4,space*5,space*6,space*7};
+        int[] ySpot = {0,spaceH,spaceH*2,spaceH*3,spaceH*4,spaceH*5,spaceH*6,spaceH*7};
+
         BufferedImage image;
         
         super.paintComponent(g);
@@ -100,15 +96,14 @@ class MyPanel extends JPanel {
                 temp = 0;
             }
            for(j=temp;j<xSpot.length;j+=2){
-                g.fillRect(xSpot[j], ySpot[i], 80, 70);
+                g.fillRect(xSpot[j], ySpot[i], space, spaceH);
             }
         }
         for(int y=0;y<board.places.length;y++){
             for(int x=0;x<board.places.length;x++){
                 char peice = board.places[x][y];
                 image = getPiece(peice);
-                 
-                g.drawImage(image,xSpot[y]+16,ySpot[x]+12, null);
+                g.drawImage(image,xSpot[y]+16,ySpot[x]+16, null);
             }
         }
     }

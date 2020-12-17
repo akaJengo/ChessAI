@@ -22,6 +22,7 @@ public class King extends Piece {
         return this.type;
     }
 
+    @Override
     public double getValue() {
         return this.value;
     }

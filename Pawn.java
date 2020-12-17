@@ -11,9 +11,11 @@ package ChessAI;
  */
 public class Pawn extends Piece {
     char type = 'P';
+    boolean isWhite;
 
     public Pawn(boolean isWhite) {
         super(isWhite);
+        this.isWhite = isWhite;
     }
 
     @Override
@@ -22,13 +24,26 @@ public class Pawn extends Piece {
     }
 
 
+    @Override
     public double getValue() {
         this.value = 1.0;
         return this.value;
     }
 
-    public void move() {
-
+    @Override
+    public void getMoves(int x, int y) {
+        boolean start = isStart(x,this.isWhite);
+    }
+    
+    private boolean isStart(int x, boolean isWhite){
+        boolean start = false;
+        if(x==1&&isWhite==true){
+            start = true;
+        }
+        if(x==6&&isWhite==false){
+            start = true;
+        }
+        return start;
     }
 
 }

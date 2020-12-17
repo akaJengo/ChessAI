@@ -22,6 +22,7 @@ public class Bishop extends Piece {
     }
 
 
+    @Override
     public double getValue() {
         this.value = 3.33;
         return this.value;

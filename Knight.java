@@ -22,6 +22,7 @@ public class Knight extends Piece {
     }
 
 
+    @Override
     public double getValue() {
         this.value = 3.2;
         return this.value;

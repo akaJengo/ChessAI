@@ -22,12 +22,14 @@ public class Queen extends Piece {
         return this.type;
     }
 
+    @Override
     public double getValue() {
         this.value = 8.8;
         return this.value;
     }
 
-    public void move() {
+    @Override
+    public void getMoves(int x, int y) {
 
     }
 

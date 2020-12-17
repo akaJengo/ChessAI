@@ -33,7 +33,7 @@ public class Piece {
     return value;
   }
 
-  public void getMoves() {
+  public void getMoves(int x, int y) {
 
   }
 }

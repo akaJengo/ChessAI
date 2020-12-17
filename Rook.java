@@ -22,6 +22,7 @@ public class Rook extends Piece {
     }
 
 
+    @Override
     public double getValue() {
         this.value = 5.1;
         return this.value;
