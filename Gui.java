@@ -23,8 +23,10 @@ import javax.swing.LayoutStyle;
  */
 public class Gui extends JFrame {
     MyPanel panel;
-    Rules rules;
     Board board;
+    Piece piece;
+    
+    boolean start = false;
     
     char [][]places;
     
@@ -117,6 +119,16 @@ public class Gui extends JFrame {
                 }
             }
         };
+        btnStart.addActionListener((ActionEvent e) -> {
+            start();
+        });
+        btnStop.addActionListener((ActionEvent e) -> {
+            start();
+        });
+        btnReset.addActionListener((ActionEvent e) -> {
+            reset();
+        });
+
         txtFrom.addActionListener( action );
         txtTo = new JTextField();
         txtTo.addActionListener( action );
@@ -346,6 +358,9 @@ public class Gui extends JFrame {
                 .addComponent(pnlMain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         setTitle("Chess Game");
+        btnStart.setEnabled(true);
+        btnStop.setEnabled(false);
+        btnReset.setEnabled(false);
         pack();
         setSize(694, 754);
         setLocationRelativeTo(null);
@@ -381,21 +396,38 @@ public class Gui extends JFrame {
     public void updateSpots(Board board, int fromx, int fromy, int tox, int toy){
         board.board[tox][toy] = board.board[fromx][fromy];
         board.board[fromx][fromy]=null;
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                try{
-                   System.out.print(board.board[i][j].getType()+" "); 
-                }catch(Exception e){
-                    System.out.print("  ");
-                }
-                
-            }
-            System.out.println("");
-        }
     }
     
     public Board getBoard(){
         return this.board;
+    }
+    
+    private void start(){
+        if(start==true){
+            start = false;
+            btnStart.setEnabled(true);
+            btnStop.setEnabled(false);
+            btnReset.setEnabled(true);
+            txtTo.setEnabled(false);
+            txtFrom.setEnabled(false);
+        }else{
+            start = true;
+            btnStart.setEnabled(false);
+            btnReset.setEnabled(false);
+            btnStop.setEnabled(true);
+            txtTo.setEnabled(true);
+            txtFrom.setEnabled(true);
+        }
+    }
+    
+    private void reset() {
+        txtTo.setEnabled(false);
+        txtFrom.setEnabled(false);
+        btnStart.setEnabled(true);
+        btnStop.setEnabled(false);
+        btnReset.setEnabled(false);
+        this.board.resetBoard();
+        panel.repaint();
     }
     
     private int getValue(char letter){
