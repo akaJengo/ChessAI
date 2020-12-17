@@ -14,10 +14,10 @@ public class Pawn extends Piece {
     boolean isWhite;
     boolean start; 
 
-    public Pawn(boolean isWhite) {
+    public Pawn(boolean isWhite, boolean start) {
         super(isWhite);
         this.isWhite = isWhite;
-        this.start = true;
+        this.start = start;
     }
 
     @Override
@@ -33,8 +33,36 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void getMoves(int x, int y) {
-       
+    public boolean[][] getMoves(int x, int y,Board board) {
+        this.moves = new boolean[8][8];
+        if(start == true){
+            this.moves[x][y] = false;
+            int z = forewards(isWhite);
+            this.moves[x+forewards(isWhite)][y] = true;
+            this.moves[x+2*forewards(isWhite)][y] = true;
+        }else{
+            this.moves[x][y] = false;
+            this.moves[x+forewards(isWhite)][y] = true;
+        }
+        if(board.board[x+forewards(isWhite)][y+1]!=null){
+            this.moves[x+forewards(isWhite)][y+1] = true;
+        }
+        if(board.board[x+forewards(isWhite)][y-1]!=null){
+            this.moves[x+forewards(isWhite)][y-1] = true;
+        }
+        this.start = false;
+        return this.moves;
+    }
+    
+    public int forewards(boolean isWhite){
+        int y= 0;
+        if(isWhite == true){
+            y--;
+        }
+        if(isWhite == false){
+            y++;
+        }
+        return y;
     }
     
     private void isStart(int x, boolean isWhite){
