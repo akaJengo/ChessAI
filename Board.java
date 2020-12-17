@@ -44,8 +44,8 @@ public class Board {
         board[7][0] = new Rook(true);
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(false);
-            board[6][i] = new Pawn(true);
+            board[1][i] = new Pawn(false, true);
+            board[6][i] = new Pawn(true, true);
         }
 
     }
