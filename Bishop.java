@@ -27,6 +27,7 @@ public class Bishop extends Piece {
         return this.value;
     }
 
+    @Override
     public boolean[][] getMoves(int x, int y) {
         this.moves = new boolean[8][8];
         // Pos diag down
