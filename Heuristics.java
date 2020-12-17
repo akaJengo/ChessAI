@@ -7,16 +7,17 @@
  */
 public class Heuristics {
 
-    int wScore, bScore;
+    double wScore, bScore;
 
-    public int evaluate(Piece b, boolean isBlack) {
-        wScore = 0;
-        bScore = 0;
-        int totalPieces = 100;
-
-        for (int i = 0; i < totalPieces; i++) {
-            wScore += 1;
-            bScore += 1;
+    public double evaluate(Board b, boolean isBlack) {
+        for (int i = 0; i <= b.board.length; i++) {
+            for (int j = 0; j <= b.board[0].length; j++) {
+                if (b.piece.getColor()) {
+                    wScore += b.board[i][j].getValue();
+                } else {
+                    bScore += b.board[i][j].getValue();
+                }
+            }
         }
         if (isBlack) {
             return bScore - wScore;
