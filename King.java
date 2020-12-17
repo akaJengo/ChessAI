@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -11,6 +11,7 @@
  */
 public class King extends Piece {
     char type = 'L';
+    double value = 4.0;
 
     public King(boolean isWhite) {
         super(isWhite);
@@ -21,9 +22,7 @@ public class King extends Piece {
         return this.type;
     }
 
-    @Override
     public double getValue() {
-        this.value = 4.0;
         return this.value;
     }
 

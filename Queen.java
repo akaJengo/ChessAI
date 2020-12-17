@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -22,7 +22,6 @@ public class Queen extends Piece {
         return this.type;
     }
 
-    @Override
     public double getValue() {
         this.value = 8.8;
         return this.value;
