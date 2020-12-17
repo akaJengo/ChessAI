@@ -28,23 +28,39 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean[][] getMoves(int x, int y) {
+    public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
         // Pos diag down
         for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
-            this.moves[i][j] = true;
+            if (board.board[i][j] != null) {
+                break;
+            } else {
+                this.moves[i][j] = true;
+            }
         }
         // Pos diag up
         for (int i = x + 1, j = y - 1; (i <= moves.length) && (j >= 0); i++, j--) {
-            this.moves[i][j] = true;
+            if (board.board[i][j] != null) {
+                break;
+            } else {
+                this.moves[i][j] = true;
+            }
         }
         // neg diag down
         for (int i = x - 1, j = y + 1; (i >= 0) && (j <= moves.length); i--, j++) {
-            this.moves[i][j] = true;
+            if (board.board[i][j] != null) {
+                break;
+            } else {
+                this.moves[i][j] = true;
+            }
         }
         // neg diag up
         for (int i = x - 1, j = y - 1; (i >= 0) && (j >= 0); i--, j--) {
-            this.moves[i][j] = true;
+            if (board.board[i][j] != null) {
+                break;
+            } else {
+                this.moves[i][j] = true;
+            }
         }
         return this.moves;
     }
