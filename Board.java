@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package ChessAI;
-
 /**
  *
  * @author Aidan Larock
  */
+package ChessAI;
+
 public class Board {
     Piece[][] board;
     Piece piece;
@@ -44,9 +39,16 @@ public class Board {
         board[7][0] = new Rook(true);
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(false, true);
-            board[6][i] = new Pawn(true, true);
+            board[1][i] = new Pawn(false,true);
+            board[6][i] = new Pawn(true,true);
         }
-
+    }
+    public void resetBoard(){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                board[i][j] = null;
+            }
+        }
+        addPieces();
     }
 }
