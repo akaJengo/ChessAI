@@ -10,8 +10,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import javax.swing.*;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.GroupLayout;
@@ -22,15 +20,14 @@ import javax.swing.LayoutStyle;
  * @author Aidan Larock
  */
 public class Gui extends JFrame {
+    
     MyPanel panel;
     Board board;
     Piece piece;
-    ChessAI main;
-    
-    boolean start = false;
-    
+    ChessAI main; 
+    boolean start = false; 
     char [][]places;
-    
+    // <editor-fold defaultstate="collapsed" desc="gui variables">  
     private JButton btnReset;
     private JButton btnStart;
     private JButton btnStop;
@@ -66,7 +63,7 @@ public class Gui extends JFrame {
     private JPanel pnlTop;
     private JTextField txtFrom;
     private JTextField txtTo;
-
+    // </editor-fold>  
 
     public Gui() {
         build();
@@ -377,6 +374,7 @@ public class Gui extends JFrame {
         return this.places;
     }
     
+    // <editor-fold defaultstate="collapsed" desc="submit button">    
     private void submit() {
         String from = txtFrom.getText();
         char letter = from.charAt(0);
@@ -388,15 +386,26 @@ public class Gui extends JFrame {
         int value = getValue(letter);
         txtTo.setText("");
         txtFrom.setText("");
-        this.places[num][value] = this.places [numFrom][valueFrom];
-        this.places[numFrom][valueFrom] = ' ';
         updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
     } 
+    // </editor-fold>  
     
     public void updateSpots(Board board, int fromx, int fromy, int tox, int toy){
+        boolean canMove = getAllMoves(board, fromx,fromy,tox,toy);
         board.board[tox][toy] = board.board[fromx][fromy];
         board.board[fromx][fromy]=null;
+        this.places[tox][toy] = this.places [fromx][fromy];
+        this.places[fromx][fromy] = ' ';
+    }
+    
+    private boolean getAllMoves(Board board, int fromx, int fromy, int tox, int toy){
+        boolean canMove = false;
+        // get moves from peices using
+        // board = g.getBoard();
+        // piece = board.board[6][1];
+        // piece.getMoves(6, 1,board);
+        return canMove;
     }
     
     public Board getBoard(){
