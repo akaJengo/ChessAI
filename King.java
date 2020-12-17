@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+//package ChessAI;
 
 /**
  *
@@ -27,7 +27,33 @@ public class King extends Piece {
         return this.value;
     }
 
-    public void move() {
-
+    @Override
+    public boolean[][] getMoves(int x, int y) {
+        this.moves = new boolean[8][8];
+        if ((x + 1 <= 8) && (y - 1 >= 0)) {
+            this.moves[x + 1][y - 1] = true;
+        }
+        if ((x + 1 <= 8) && ((y <= 8) | (y >= 0))) {
+            this.moves[x + 1][y] = true;
+        }
+        if ((x + 1 <= 8) && (y + 1 <= 8)) {
+            this.moves[x + 1][y + 1] = true;
+        }
+        if (((x <= 8) | (x >= 0)) && (y + 1 <= 8)) {
+            this.moves[x][y + 1] = true;
+        }
+        if ((x - 1 >= 0) && (y + 1 <= 8)) {
+            this.moves[x - 1][y + 1] = true;
+        }
+        if ((x - 1 >= 0) && ((y <= 8) | (y >= 0))) {
+            this.moves[x - 1][y] = true;
+        }
+        if ((x - 1 >= 0) && (y - 1 >= 0)) {
+            this.moves[x - 1][y - 1] = true;
+        }
+        if (((x <= 8) | (x >= 0)) && (y - 1 >= 0)) {
+            this.moves[x][y - 1] = true;
+        }
+        return this.moves;
     }
 }
