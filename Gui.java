@@ -25,6 +25,7 @@ public class Gui extends JFrame {
     MyPanel panel;
     Board board;
     Piece piece;
+    ChessAI main;
     
     boolean start = false;
     
@@ -427,6 +428,29 @@ public class Gui extends JFrame {
         btnStop.setEnabled(false);
         btnReset.setEnabled(false);
         this.board.resetBoard();
+        char[] spots = {'r','k','b','q','l','b','k','r'};
+        for(int j=0;j<8;j++){
+            for(int i=0;i<8;i++){
+                this.places[j][i] = ' ';
+            }
+        }
+        for(int i=0;i<this.places.length;i++){
+            this.places[1][i] = 'P';
+        }
+        for(int i=0;i<2;i++){
+            if(i==0){
+                for(int j=0;j<this.places.length;j++){
+                    this.places[0][j] = Character.toUpperCase(spots[j]);
+                }
+            }else if(i==1){
+                for(int j=0;j<this.places.length;j++){
+                    this.places[7][j] = spots[j];
+                }
+            }
+        }
+        for(int i=0;i<this.places.length;i++){
+            this.places[6][i] = 'p';
+        }
         panel.repaint();
     }
     
