@@ -393,18 +393,25 @@ public class Gui extends JFrame {
     
     public void updateSpots(Board board, int fromx, int fromy, int tox, int toy){
         boolean canMove = getAllMoves(board, fromx,fromy,tox,toy);
-        board.board[tox][toy] = board.board[fromx][fromy];
-        board.board[fromx][fromy]=null;
-        this.places[tox][toy] = this.places [fromx][fromy];
-        this.places[fromx][fromy] = ' ';
+        if(canMove == true){
+            board.board[tox][toy] = board.board[fromx][fromy];
+            board.board[fromx][fromy]=null;
+            this.places[tox][toy] = this.places [fromx][fromy];
+            this.places[fromx][fromy] = ' ';
+        }else{
+            System.out.println("Invalid Move");
+        }
     }
     
     private boolean getAllMoves(Board board, int fromx, int fromy, int tox, int toy){
+        boolean[][] moves;
         boolean canMove = false;
         // get moves from peices using
-        // board = g.getBoard();
-        // piece = board.board[6][1];
-        // piece.getMoves(6, 1,board);
+        piece = board.board[fromx][fromy];
+        moves = piece.getMoves(fromx, fromy,board);
+        if(moves[tox][toy] == true){
+            canMove = true;
+        }
         return canMove;
     }
     

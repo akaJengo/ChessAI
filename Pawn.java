@@ -44,15 +44,28 @@ public class Pawn extends Piece {
             this.moves[x][y] = false;
             this.moves[x+forewards(isWhite)][y] = true;
         }
-        if(board.board[x+forewards(isWhite)][y+1]!=null){
-            this.moves[x+forewards(isWhite)][y+1] = true;
+        try{
+            if(board.board[x+forewards(isWhite)][y+1]!=null){
+                this.moves[x+forewards(isWhite)][y+1] = true;
+            }
+        }catch(Exception e){
+            
         }
-        if(board.board[x+forewards(isWhite)][y-1]!=null){
-            this.moves[x+forewards(isWhite)][y-1] = true;
+        try{
+            if(board.board[x+forewards(isWhite)][y-1]!=null){
+                this.moves[x+forewards(isWhite)][y-1] = true;
+            }
+        }catch(Exception e){
+            
         }
-        if(board.board[x+forewards(isWhite)][y]!=null){
-            this.moves[x+forewards(isWhite)][y] = false;
+        try{
+            if(board.board[x+forewards(isWhite)][y]!=null){
+                this.moves[x+forewards(isWhite)][y] = false;
+            } 
+        }catch(Exception e){
+            System.out.println("Protion!!!");
         }
+
         this.start = false;
         return this.moves;
     }
