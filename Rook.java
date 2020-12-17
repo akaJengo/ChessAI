@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+//package ChessAI;
 
 /**
  *
@@ -11,9 +11,11 @@ package ChessAI;
  */
 public class Rook extends Piece {
     char type = 'R';
+    boolean[][] moves;
 
     public Rook(boolean isWhite) {
         super(isWhite);
+        moves = new boolean[8][8];
     }
 
     @Override
@@ -21,14 +23,14 @@ public class Rook extends Piece {
         return this.type;
     }
 
-
     @Override
     public double getValue() {
         this.value = 5.1;
         return this.value;
     }
 
-    public void move() {
+    @Override
+    public boolean[][] getMoves(int x, int y) {
 
     }
 }
