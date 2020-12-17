@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+//package ChessAI;
 
 /**
  *
@@ -21,14 +21,30 @@ public class Bishop extends Piece {
         return this.type;
     }
 
-
     @Override
     public double getValue() {
         this.value = 3.33;
         return this.value;
     }
 
-    public void move() {
-
+    public boolean[][] getMoves(int x, int y) {
+        this.moves = new boolean[8][8];
+        // Pos diag down
+        for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
+            this.moves[i][j] = true;
+        }
+        // Pos diag up
+        for (int i = x + 1, j = y - 1; (i <= moves.length) && (j >= 0); i++, j--) {
+            this.moves[i][j] = true;
+        }
+        // neg diag down
+        for (int i = x - 1, j = y + 1; (i >= 0) && (j <= moves.length); i--, j++) {
+            this.moves[i][j] = true;
+        }
+        // neg diag up
+        for (int i = x - 1, j = y - 1; (i >= 0) && (j >= 0); i--, j--) {
+            this.moves[i][j] = true;
+        }
+        return this.moves;
     }
 }
