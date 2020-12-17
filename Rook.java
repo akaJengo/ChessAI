@@ -29,21 +29,43 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean[][] getMoves(int x, int y) {
+    public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
 
         for (int i = 0; i < moves.length; i++) {
             if (y + i <= 8) {
-                this.moves[x][y + i] = true;
+                if (board.board[x][y + i] != null) {
+                    break;
+                } else {
+                    this.moves[x][y + i] = true;
+                }
             }
+        }
+        for (int i = 0; i < moves.length; i++) {
             if (Math.abs(y - i) >= 0) {
-                this.moves[x][Math.abs(y - i)] = true;
+                if (board.board[x][Math.abs(y - i)] != null) {
+                    break;
+                } else {
+                    this.moves[x][y + i] = true;
+                }
             }
+        }
+        for (int i = 0; i < moves.length; i++) {
             if (x + i <= 8) {
-                this.moves[x + i][y] = true;
+                if (board.board[x + i][y] != null) {
+                    break;
+                } else {
+                    this.moves[x + i][y] = true;
+                }
             }
+        }
+        for (int i = 0; i < moves.length; i++) {
             if (Math.abs(x - i) >= 0) {
-                this.moves[Math.abs(x - i)][y] = true;
+                if (board.board[Math.abs(x - i)][y] != null) {
+                    break;
+                } else {
+                    this.moves[Math.abs(x - i)][y] = true;
+                }
             }
         }
         return this.moves;
