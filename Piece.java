@@ -13,6 +13,7 @@ public class Piece {
   public char type;
   public boolean white;
   public double value;
+  public boolean[][] moves; 
   int x;
   int y;
 
@@ -33,7 +34,7 @@ public class Piece {
     return value;
   }
 
-  public void getMoves(int x, int y) {
+  public boolean[][] getMoves(int x, int y) {
 
   }
 }
