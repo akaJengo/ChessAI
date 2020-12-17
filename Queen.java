@@ -32,8 +32,8 @@ public class Queen extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
 
-        // Pos diag down
-        for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
+         // Pos diag down
+         for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
             if (board.board[i][j] != null) {
                 break;
             } else {
@@ -64,6 +64,7 @@ public class Queen extends Piece {
                 this.moves[i][j] = true;
             }
         }
+        //Rook moves
         for (int i = 0; i < moves.length; i++) {
             if (y + i <= 8) {
                 if (board.board[x][y + i] != null) {
