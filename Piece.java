@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+//package ChessAI;
 
 /**
  *
@@ -20,9 +20,9 @@ public class Piece {
     this.white = isWhite;
     this.value = getValue();
   }
-  
-  public boolean getColor(){
-    return this.white; 
+
+  public boolean getColor() {
+    return this.white;
   }
 
   public char getType() {
