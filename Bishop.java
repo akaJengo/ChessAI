@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -33,6 +33,9 @@ public class Bishop extends Piece {
         // Pos diag down
         for (int i = x + 1, j = y + 1; (i < moves.length) && (j < moves.length); i++, j++) {
             if (board.board[i][j] != null) {
+                if(board.board[i][j].white!=this.white){
+                    this.moves[i][j] = true;
+                }
                 break;
             } else {
                 this.moves[i][j] = true;
@@ -41,6 +44,9 @@ public class Bishop extends Piece {
         // Pos diag up
         for (int i = x + 1, j = y - 1; (i < moves.length) && (j >= 0); i++, j--) {
             if (board.board[i][j] != null) {
+                if(board.board[i][j].white!=this.white){
+                    this.moves[i][j] = true;
+                }
                 break;
             } else {
                 this.moves[i][j] = true;
@@ -49,6 +55,9 @@ public class Bishop extends Piece {
         // neg diag down
         for (int i = x - 1, j = y + 1; (i >= 0) && (j < moves.length); i--, j++) {
             if (board.board[i][j] != null) {
+                if(board.board[i][j].white!=this.white){
+                    this.moves[i][j] = true;
+                }
                 break;
             } else {
                 this.moves[i][j] = true;
@@ -57,6 +66,9 @@ public class Bishop extends Piece {
         // neg diag up
         for (int i = x - 1, j = y - 1; (i >= 0) && (j >= 0); i--, j--) {
             if (board.board[i][j] != null) {
+                if(board.board[i][j].white!=this.white){
+                    this.moves[i][j] = true;
+                }
                 break;
             } else {
                 this.moves[i][j] = true;

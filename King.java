@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -31,43 +31,43 @@ public class King extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
 
-        if ((x + 1 < 8) && (y - 1 >= 0)) {
-            if (board.board[x + 1][y - 1] == null) {
+        if ((x + 1 <= 8) && (y - 1 >= 0)) {
+            if (board.board[x + 1][y - 1] == null||board.board[x + 1][y - 1].white!=this.white) {
                 this.moves[x + 1][y - 1] = true;
             }
         }
-        if ((x + 1) < 8) {
-            if (board.board[x + 1][y] == null) {
+        if ((x + 1) <= 8) {
+            if (board.board[x + 1][y] == null||board.board[x + 1][y].white!=this.white) {
                 this.moves[x + 1][y] = true;
             }
         }
-        if ((x + 1 < 8) && (y + 1 < 8)) {
-            if (board.board[x + 1][y + 1] == null) {
+        if ((x + 1 <= 8) && (y + 1 <= 8)) {
+            if (board.board[x + 1][y + 1] == null||board.board[x + 1][y + 1].white!=this.white) {
                 this.moves[x + 1][y + 1] = true;
             }
         }
-        if ((y + 1) < 8) {
-            if (board.board[x][y + 1] == null) {
+        if ((y + 1) <= 8) {
+            if (board.board[x][y + 1] == null||board.board[x][y + 1].white!=this.white) {
                 this.moves[x][y + 1] = true;
             }
         }
-        if ((x - 1 >= 0) && (y + 1 < 8)) {
-            if (board.board[x - 1][y + 1] == null) {
+        if ((x - 1 >= 0) && (y + 1 <= 8)) {
+            if (board.board[x - 1][y + 1] == null||board.board[x - 1][y + 1].white!=this.white) {
                 this.moves[x - 1][y + 1] = true;
             }
         }
         if ((x - 1) >= 0) {
-            if (board.board[x - 1][y] == null) {
+            if (board.board[x - 1][y] == null||board.board[x + 1][y].white!=this.white) {
                 this.moves[x - 1][y] = true;
             }
         }
         if ((x - 1 >= 0) && (y - 1 >= 0)) {
-            if (board.board[x - 1][y - 1] == null) {
+            if (board.board[x - 1][y - 1] == null||board.board[x - 1][y - 1].white!=this.white) {
                 this.moves[x - 1][y - 1] = true;
             }
         }
         if ((y - 1) >= 0) {
-            if (board.board[x][y - 1] == null) {
+            if (board.board[x][y - 1] == null||board.board[x][y - 1].white!=this.white) {
                 this.moves[x][y - 1] = true;
             }
         }

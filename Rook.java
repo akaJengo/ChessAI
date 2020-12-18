@@ -34,6 +34,9 @@ public class Rook extends Piece {
         for (int i = 1; i < moves.length; i++) {
             if (y + i < 8) {
                 if (board.board[x][y + i] != null) {
+                    if(board.board[x][y+i].white!=this.white){
+                        this.moves[x][y+i] = true;
+                    }
                     break;
                 } else {
                     this.moves[x][y + i] = true;
@@ -43,6 +46,9 @@ public class Rook extends Piece {
         for (int i = 1; i < moves.length; i++) {
             if (y - i >= 0) {
                 if (board.board[x][Math.abs(y - i)] != null) {
+                    if(board.board[x][Math.abs(y - i)].white!=this.white){
+                        this.moves[x][Math.abs(y - i)] = true;
+                    }
                     break;
                 } else {
                     this.moves[x][y - i] = true;
@@ -52,6 +58,9 @@ public class Rook extends Piece {
         for (int i = 1; i < moves.length; i++) {
             if (x + i < 8) {
                 if (board.board[x + i][y] != null) {
+                    if(board.board[x+i][y].white!=this.white){
+                        this.moves[x+i][y] = true;
+                    }
                     break;
                 } else {
                     this.moves[x + i][y] = true;
@@ -61,6 +70,9 @@ public class Rook extends Piece {
         for (int i = 1; i < moves.length; i++) {
             if (x - i >= 0) {
                 if (board.board[Math.abs(x - i)][y] != null) {
+                    if(board.board[Math.abs(x - i)][y].white!=this.white){
+                        this.moves[Math.abs(x - i)][y] = true;
+                    }
                     break;
                 } else {
                     this.moves[Math.abs(x - i)][y] = true;

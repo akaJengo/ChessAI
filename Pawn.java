@@ -36,23 +36,29 @@ public class Pawn extends Piece {
     public boolean[][] getMoves(int x, int y,Board board) {
         this.moves = new boolean[8][8];
         if(start == true){
-            this.moves[x][y] = false;
-            int z = forewards(isWhite);
-            this.moves[x+forewards(isWhite)][y] = true;
-            this.moves[x+2*forewards(isWhite)][y] = true;
+            if(board.board[x+forewards(isWhite)][y]==null){
+                this.moves[x][y] = false;
+                this.moves[x+forewards(isWhite)][y] = true;
+                if(board.board[x+2*forewards(isWhite)][y]==null){
+                    this.moves[x+2*forewards(isWhite)][y] = true;
+                }
+            }
         }else{
             this.moves[x][y] = false;
-            this.moves[x+forewards(isWhite)][y] = true;
+            if(board.board[x+forewards(isWhite)][y]==null){
+                this.moves[x+forewards(isWhite)][y] = true;
+            }
         }
-        try{
-            if(board.board[x+forewards(isWhite)][y+1]!=null){
+        try{     
+            if(board.board[x+forewards(isWhite)][y+1]!=null && board.board[x+forewards(isWhite)][y+1].white!=this.white){
                 this.moves[x+forewards(isWhite)][y+1] = true;
             }
+            System.out.println(board.board[x+forewards(isWhite)][y-1].white);
         }catch(Exception e){
             
         }
         try{
-            if(board.board[x+forewards(isWhite)][y-1]!=null){
+            if(board.board[x+forewards(isWhite)][y-1]!=null&&board.board[x+forewards(isWhite)][y-1].white!=this.white){
                 this.moves[x+forewards(isWhite)][y-1] = true;
             }
         }catch(Exception e){
@@ -63,7 +69,7 @@ public class Pawn extends Piece {
                 this.moves[x+forewards(isWhite)][y] = false;
             } 
         }catch(Exception e){
-            System.out.println("Protion!!!");
+            System.out.println("Promotion!!!");
         }
 
         this.start = false;
