@@ -388,6 +388,8 @@ public class Gui extends JFrame {
         txtFrom.setText("");
         updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
+
+        
         AlphaBeta ab = new AlphaBeta(); 
         Board bState = ab.alphaBetaSearch(board, 4); 
     } 
