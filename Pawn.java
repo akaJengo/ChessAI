@@ -71,8 +71,9 @@ public class Pawn extends Piece {
         }catch(Exception e){
             System.out.println("Promotion!!!");
         }
-
+        
         this.start = false;
+        this.moves[x][y] = false;
         return this.moves;
     }
     
