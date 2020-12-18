@@ -1,78 +1,94 @@
+import java.util.Arrays;
+
 /**
  * AlphaBeta
  */
 public class AlphaBeta {
 
     Heuristics h;
-    Board b;
+    Board bestBstate;
+    int toX, toY;
 
     AlphaBeta() {
         h = new Heuristics();
     }
 
-    public Board alphaBetaSearch(Piece b, int depth) {
-        int val = maxValue(b, Integer.MIN_VALUE, Integer.MAX_VALUE, depth);
-        b.val = val;
+    private Board doMove(Board b, boolean[][] m, int fromx, int fromy) {
+        Board temp = new Board();
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
+                temp.board[i][j] = b.board[i][j];
+            }
+        }
+        // boolean[][] j = mBoard.piece.moves;
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
+                if (m[i][j]) {
+                    temp.board[i][j] = temp.board[fromx][fromy];
+                    temp.board[fromx][fromy] = null;
+                    toX = i;
+                    toY = j;
+                    break;
+                }
+            }
+        }
+        return temp;
+    }
+
+    private Board undoMove(Board b, int fromx, int fromy, int toX, int toY) {
+        Board temp = new Board();
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
+                temp.board[i][j] = b.board[i][j];
+            }
+        }
+        temp.board[fromx][fromy] = temp.board[toX][toY];
+        temp.board[toX][toY] = null;
+        toX = 0;
+        toY = 0;
+        return temp;
+    }
+
+    public Board alphaBetaSearch(Board b, int depth) {
+        double val = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth);
         return b;
     }
 
-    public int maxValue(Piece b, int alpha, int beta, int depth) {
-        int val = Integer.MIN_VALUE;
+    private double maxValue(Board b, double alpha, double beta, int depth) {
+        double val = Double.MIN_VALUE;
         if (depth == 0) {
             return h.evaluate(b, true);
         }
-        for (int i = 0; i < 0; i++) { // need to be for each child of the node, i.e for move in moves.
-            val = Math.max(val, minValue(b, alpha, beta, depth - 1));
-            if (val >= beta) {
-                return val;
+        for (int i = 0; i < b.board.length; i++) { // need to be for each child of the node, i.e for move in moves.
+            for (int j = 0; j < b.board[0].length; j++) {
+                b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                val = Math.max(val, minValue(b, alpha, beta, depth - 1));
+                b = undoMove(b, i, j, toX, toY);
+                if (val >= beta) {
+                    return val;
+                }
+                alpha = Math.max(alpha, val);
             }
-            alpha = Math.max(alpha, val);
         }
         return val;
     }
 
-    public int minValue(Piece b, int alpha, int beta, int depth) {
-        int val = Integer.MAX_VALUE;
+    private double minValue(Board b, double alpha, double beta, int depth) {
+        double val = Double.MAX_VALUE;
         if (depth == 0) {
             return h.evaluate(b, false);
         }
-        for (int i = 0; i < 0; i++) {
-            val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
-
-            if (val <= alpha) {
-                return val;
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
+                b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
+                b = undoMove(b, i, j, toX, toY);
+                if (val <= alpha) {
+                    return val;
+                }
+                beta = Math.min(beta, val);
             }
-            beta = Math.min(beta, val);
         }
         return val;
     }
-
-    // if (isBlack) {
-    // int val = Integer.MIN_VALUE;
-
-    // for (int i = 0; i < 0; i++) { // need to be for each child of the node, i.e
-    // for move in moves.
-    // val = Math.max(val, alphaBetaMax(b, depth - 1, alpha, beta, false));
-    // alpha = Math.max(alpha, val);
-
-    // if (alpha >= beta) {
-    // break;
-    // }
-    // }
-    // return val;
-
-    // } else {
-    // int val = Integer.MAX_VALUE;
-
-    // for (int i = 0; i < 0; i++) {
-    // val = Math.min(val, alphaBetaMax(b, depth - 1, alpha, beta, true));
-    // beta = Math.min(beta, val);
-
-    // if (beta <= alpha) {
-    // break;
-    // }
-    // }
-    // return val;
-    // }
-    // }
 }
