@@ -10,8 +10,8 @@ public class Heuristics {
     double wScore, bScore;
 
     public double evaluate(Board b, boolean isBlack) {
-        for (int i = 0; i <= b.board.length; i++) {
-            for (int j = 0; j <= b.board[0].length; j++) {
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
                 if (b.piece.getColor()) {
                     wScore += b.board[i][j].getValue();
                 } else {
