@@ -6,9 +6,19 @@
 package ChessAI.pieces;
 
 import ChessAI.Board;
+
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 2.6
+ * 
+ * Rook
+ * the rook piece in chess 
+ * can move up, down, left, and right
  */
 public class Rook extends Piece {
     char type = 'R';
@@ -18,17 +28,23 @@ public class Rook extends Piece {
 
     }
 
+    // returns R
     @Override
     public char getType() {
         return this.type;
     }
 
+    // returns 5.1
     @Override
     public double getValue() {
         this.value = 5.1;
         return this.value;
     }
 
+    /* getMoves */
+    /**   
+    * tests all spots up, down, left and right of rook. stops and first enemy
+    */
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];

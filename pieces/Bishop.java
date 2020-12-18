@@ -6,9 +6,19 @@
 package ChessAI.pieces;
 
 import ChessAI.Board;
+
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 1.9
+ * 
+ * Bishop
+ * bishop piece of chess
+ * can move diagonally 
  */
 public class Bishop extends Piece {
     char type = 'B';
@@ -17,17 +27,24 @@ public class Bishop extends Piece {
         super(isWhite);
     }
 
+    // returns B
     @Override
     public char getType() {
         return this.type;
     }
 
+    // returns 3.33
     @Override
     public double getValue() {
         this.value = 3.33;
         return this.value;
     }
 
+    /* getMove */
+    /**   
+    * tests all diagonal spots from rook, stops at first enemy
+    * returns 2d array of all moves
+    */
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];

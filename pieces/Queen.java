@@ -7,10 +7,20 @@ package ChessAI.pieces;
 
 import ChessAI.Board;
 
-
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 2.2
+ * 
+ * Queen
+ * The Queen piece of chess can move like a 
+ * rook and bishop combined 
+ * @see Rook.java
+ * @see Bishop.java
  */
 public class Queen extends Piece {
     char type = 'Q';
@@ -19,20 +29,25 @@ public class Queen extends Piece {
 
     public Queen(boolean isWhite) {
         super(isWhite);
-
     }
-
+    
+    // return Q 
     @Override
     public char getType() {
         return this.type;
     }
-
+    
+    // return 8.8
     @Override
     public double getValue() {
         this.value = 8.8;
         return this.value;
     }
-
+    
+    /* getMove */
+    /**   
+    * uses bishop and rook to validate moves for queen
+    */
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         boolean[][] bishopMoves;

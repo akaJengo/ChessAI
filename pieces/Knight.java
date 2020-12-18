@@ -6,9 +6,22 @@
 package ChessAI.pieces;
 
 import ChessAI.Board;
+
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 3.5
+ * 
+ * Knight
+ * Knight piece in chess 
+ * can move in 'L' shapes around itself of length and width:
+ * length - 2 and  width - 1 
+ *            or
+ * width - 1  and  length - 2
  */
 public class Knight extends Piece {
     char type = 'K';
@@ -17,17 +30,24 @@ public class Knight extends Piece {
         super(isWhite);
     }
 
+    // return K
     @Override
     public char getType() {
         return this.type;
     }
-
+    
+    // return 3.2
     @Override
     public double getValue() {
         this.value = 3.2;
         return this.value;
     }
-
+    
+    /* getMoves */
+    /**   
+    * gets all moves in "L" shape around piece
+    * returns all possible moves 
+    */
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];

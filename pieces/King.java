@@ -8,8 +8,17 @@ package ChessAI.pieces;
 import ChessAI.Board;
 
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 3.2
+ * 
+ * King
+ * The king move in chess.
+ * King can move 1 block radius around itself
  */
 public class King extends Piece {
     char type = 'L';
@@ -19,16 +28,22 @@ public class King extends Piece {
         super(isWhite);
     }
 
+    // returns L
     @Override
     public char getType() {
         return this.type;
     }
 
+    // returns 4.0
     @Override
     public double getValue() {
         return this.value;
     }
 
+    /* getMoves */
+    /**   
+    * tests all spots around king, returns all valid spots
+    */
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];

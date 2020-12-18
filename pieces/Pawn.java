@@ -6,9 +6,20 @@
 package ChessAI.pieces;
 
 import ChessAI.Board;
+
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 3.3
+ * 
+ * Pawn
+ * Pawn piece in Chess
+ * can be moved up 1 space, or 2 if it is the pieces first move
+ * attacks to the diagonal, can only move forewards
  */
 public class Pawn extends Piece {
     char type = 'P';
@@ -20,19 +31,25 @@ public class Pawn extends Piece {
         this.isWhite = isWhite;
         this.start = start;
     }
-
+    
+    // return P
     @Override
     public char getType() {
         return this.type;
     }
 
-
+    // return 1.0
     @Override
     public double getValue() {
         this.value = 1.0;
         return this.value;
     }
-
+    
+    /* getMoves */
+    /**   
+    * returns valid moves in front of pawn
+    * also returns diagonal spots if enemy piece is present
+    */
     @Override
     public boolean[][] getMoves(int x, int y,Board board) {
         this.moves = new boolean[8][8];
@@ -76,6 +93,10 @@ public class Pawn extends Piece {
         return this.moves;
     }
     
+    /* forewards */
+    /**   
+    * returns the forewards direction of pawn depending on color
+    */
     public int forewards(boolean isWhite){
         int y= 0;
         if(isWhite == true){
@@ -87,8 +108,4 @@ public class Pawn extends Piece {
         return y;
     }
     
-    private void isStart(int x, boolean isWhite){
-        this.start = true;
-    }
-
 }

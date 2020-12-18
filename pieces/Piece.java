@@ -9,10 +9,22 @@ import ChessAI.Board;
 import ChessAI.Rules;
 
 /**
- *
- * @author Aidan Larock
+ * @author        Aidan Larock
+ * @author        Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #
+ * @assignment    4 - Group Project
+ * 
+ * @version 2.3
+ * 
+ * Piece
+ * 
+ * Superclass Piece contains variables and methods that help build
+ * the chess engine including: finding all possible moves, getting value, 
+ * getting type, and getting the color of a specific piece
  */
 public class Piece {
+    
   Rules rule;
   Board board;
   public char type;
@@ -23,24 +35,47 @@ public class Piece {
   int x;
   int y;
 
-  public Piece(boolean isWhite) {
-    this.white = isWhite;
-    this.value = getValue();
-  }
+    /* Piece */
+    /**
+    * this.white color of piece object
+    * this.value value of piece object
+    */
+    public Piece(boolean isWhite) {
+        this.white = isWhite;
+        this.value = getValue();
+    }
 
-  public boolean getColor() {
-    return this.white;
-  }
+    /* GetColor */
+    /**   
+    * a white piece = true
+    * returns color of piece
+    */
+    public boolean getColor() {
+        return this.white;
+    }
 
-  public char getType() {
-    return this.type;
-  }
+    /* getType */
+    /**   
+    * return type of piece 
+    * 'Q' = queen 'P' = pawn 'L' = king etc..
+    */
+    public char getType() {
+        return this.type;
+    }
 
-  public double getValue() {
-    return value;
-  }
+    /* getValue */
+    /**   
+    * returns valuation of piece
+    */
+    public double getValue() {
+        return value;
+    }
 
-  public boolean[][] getMoves(int x, int y, Board board) {
-      return this.moves;
-  }
+    /* getMoves */
+    /**   
+    * returns 2D boolean array of all possible moves
+    */
+    public boolean[][] getMoves(int x, int y, Board board) {
+        return this.moves;
+    }
 }
