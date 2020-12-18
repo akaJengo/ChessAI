@@ -31,7 +31,7 @@ public class Bishop extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
         // Pos diag down
-        for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
+        for (int i = x + 1, j = y + 1; (i < moves.length) && (j < moves.length); i++, j++) {
             if (board.board[i][j] != null) {
                 break;
             } else {
@@ -39,7 +39,7 @@ public class Bishop extends Piece {
             }
         }
         // Pos diag up
-        for (int i = x + 1, j = y - 1; (i <= moves.length) && (j >= 0); i++, j--) {
+        for (int i = x + 1, j = y - 1; (i < moves.length) && (j >= 0); i++, j--) {
             if (board.board[i][j] != null) {
                 break;
             } else {
@@ -47,7 +47,7 @@ public class Bishop extends Piece {
             }
         }
         // neg diag down
-        for (int i = x - 1, j = y + 1; (i >= 0) && (j <= moves.length); i--, j++) {
+        for (int i = x - 1, j = y + 1; (i >= 0) && (j < moves.length); i--, j++) {
             if (board.board[i][j] != null) {
                 break;
             } else {
