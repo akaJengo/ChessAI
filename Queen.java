@@ -32,11 +32,13 @@ public class Queen extends Piece {
 
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
-        boolean[][] bishopMoves = new boolean[8][8];
-        boolean[][] rookMoves = new boolean[8][8];
+        boolean[][] bishopMoves;
+        boolean[][] rookMoves;
+        bishop = new Bishop(this.white);
+        rook = new Rook(this.white);
         this.moves = new boolean[8][8];
-        bishop.getMoves(x, y, board);
-        rook.getMoves(x, y, board);
+        bishopMoves = bishop.getMoves(x, y, board);
+        rookMoves = rook.getMoves(x, y, board);
         this.moves = new boolean[8][8];
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
