@@ -383,6 +383,8 @@ public class Gui extends JFrame {
     public void submit(Board board,int numFrom, int valueFrom, int num,int value) {
         updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
+        AlphaBeta ab = new AlphaBeta(); 
+        Board best = ab.alphaBetaSearch(board, 4); 
     } 
     // </editor-fold>  
     
