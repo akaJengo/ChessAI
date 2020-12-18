@@ -1,13 +1,12 @@
-
 /**
  * AlphaBeta
  */
+package ChessAI;
+
 public class AlphaBeta {
 
     Heuristics h;
-    Board bestBstate;
-    int toX, toY;
-    double val; 
+    Board b;
 
     AlphaBeta() {
         h = new Heuristics();
@@ -60,41 +59,25 @@ public class AlphaBeta {
         return bestBstate; 
     }
 
-    private double maxValue(Board b, double alpha, double beta, int depth) {
-        val = Double.MIN_VALUE;
+    public int maxValue(Piece b, int alpha, int beta, int depth) {
+        int val = Integer.MIN_VALUE;
         if (depth == 0) {
-            double r = h.evaluate(b, true);
-            return r;
+            return h.evaluate(b, true);
         }
-        for (int i = 0; i < b.board.length; i++) { // need to be for each child of the node, i.e for move in moves.
-            for (int j = 0; j < b.board[0].length; j++) {
-                if (b.board[i][j] != null) {
-                    b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                    double t = minValue(b, alpha, beta, depth - 1);
-                    if (t < val) {
-                        val = t; 
-                        bestBstate = copy(b); 
-                    }
-                    b = undoMove(b, i, j, toX, toY);
-                    if (val >= beta) {
-                        //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                        //undoMove(b, i, j, toX, toY);
-                        return val;
-                    }
-                    if (alpha < val) {
-                        alpha = val; 
-                    }
-                }
+        for (int i = 0; i < 0; i++) { // need to be for each child of the node, i.e for move in moves.
+            val = Math.max(val, minValue(b, alpha, beta, depth - 1));
+            if (val >= beta) {
+                return val;
             }
+            alpha = Math.max(alpha, val);
         }
         return val;
     }
 
-    private double minValue(Board b, double alpha, double beta, int depth) {
-        val = Double.MAX_VALUE;
+    public int minValue(Piece b, int alpha, int beta, int depth) {
+        int val = Integer.MAX_VALUE;
         if (depth == 0) {
-            double r = h.evaluate(b, false);
-            return r; 
+            return h.evaluate(b, false);
         }
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
@@ -116,7 +99,37 @@ public class AlphaBeta {
                     }
                 }
             }
+            beta = Math.min(beta, val);
         }
         return val;
     }
+
+    // if (isBlack) {
+    // int val = Integer.MIN_VALUE;
+
+    // for (int i = 0; i < 0; i++) { // need to be for each child of the node, i.e
+    // for move in moves.
+    // val = Math.max(val, alphaBetaMax(b, depth - 1, alpha, beta, false));
+    // alpha = Math.max(alpha, val);
+
+    // if (alpha >= beta) {
+    // break;
+    // }
+    // }
+    // return val;
+
+    // } else {
+    // int val = Integer.MAX_VALUE;
+
+    // for (int i = 0; i < 0; i++) {
+    // val = Math.min(val, alphaBetaMax(b, depth - 1, alpha, beta, true));
+    // beta = Math.min(beta, val);
+
+    // if (beta <= alpha) {
+    // break;
+    // }
+    // }
+    // return val;
+    // }
+    // }
 }

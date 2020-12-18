@@ -14,6 +14,7 @@ import javax.swing.*;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
+import ChessAI.pieces.*;
 
 
 /**

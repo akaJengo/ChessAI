@@ -4,8 +4,10 @@
  */
 package ChessAI;
 
+import ChessAI.pieces.*;
+
 public class Board {
-    Piece[][] board;
+    public Piece[][] board;
     Piece piece;
 
     public Board() {
