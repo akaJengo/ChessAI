@@ -31,27 +31,27 @@ public class King extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
 
-        if ((x + 1 <= 8) && (y - 1 >= 0)) {
+        if ((x + 1 < 8) && (y - 1 >= 0)) {
             if (board.board[x + 1][y - 1] == null) {
                 this.moves[x + 1][y - 1] = true;
             }
         }
-        if ((x + 1) <= 8) {
+        if ((x + 1) < 8) {
             if (board.board[x + 1][y] == null) {
                 this.moves[x + 1][y] = true;
             }
         }
-        if ((x + 1 <= 8) && (y + 1 <= 8)) {
+        if ((x + 1 < 8) && (y + 1 < 8)) {
             if (board.board[x + 1][y + 1] == null) {
                 this.moves[x + 1][y + 1] = true;
             }
         }
-        if ((y + 1) <= 8) {
+        if ((y + 1) < 8) {
             if (board.board[x][y + 1] == null) {
                 this.moves[x][y + 1] = true;
             }
         }
-        if ((x - 1 >= 0) && (y + 1 <= 8)) {
+        if ((x - 1 >= 0) && (y + 1 < 8)) {
             if (board.board[x - 1][y + 1] == null) {
                 this.moves[x - 1][y + 1] = true;
             }
