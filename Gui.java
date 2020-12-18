@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+
 
 import java.awt.Color;
 import java.awt.Font;
@@ -388,6 +388,8 @@ public class Gui extends JFrame {
         txtFrom.setText("");
         updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
+        AlphaBeta ab = new AlphaBeta(); 
+        Board bState = ab.alphaBetaSearch(board, 4); 
     } 
     // </editor-fold>  
     
