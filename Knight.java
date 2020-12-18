@@ -30,6 +30,7 @@ public class Knight extends Piece {
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
+        
         // U R
         if ((x - 1 >= 0) && (y + 2 < 8)) {
             if (board.board[x - 1][y + 2] == null||board.board[x - 1][y + 2].white!=this.white) {
@@ -38,7 +39,7 @@ public class Knight extends Piece {
         }
         // R U
         if ((x - 2 >= 0) && (y + 1 < 8)) {
-            if (board.board[x-2][y+1] == null||board.board[x+2][y+1].white!=this.white) {
+            if (board.board[x-2][y+1] == null||board.board[x-2][y+1].white!=this.white) {
                 this.moves[x - 2][y + 1] = true;
             }
         }
