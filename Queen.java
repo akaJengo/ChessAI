@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -11,6 +11,8 @@
  */
 public class Queen extends Piece {
     char type = 'Q';
+    Bishop bishop;
+    Rook rook;
 
     public Queen(boolean isWhite) {
         super(isWhite);
@@ -30,74 +32,15 @@ public class Queen extends Piece {
 
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
+        boolean[][] bishopMoves = new boolean[8][8];
+        boolean[][] rookMoves = new boolean[8][8];
+        bishop.getMoves(x, y, board);
+        rook.getMoves(x, y, board);
         this.moves = new boolean[8][8];
-
-         // Pos diag down
-         for (int i = x + 1, j = y + 1; (i <= moves.length) && (j <= moves.length); i++, j++) {
-            if (board.board[i][j] != null) {
-                break;
-            } else {
-                this.moves[i][j] = true;
-            }
-        }
-        // Pos diag up
-        for (int i = x + 1, j = y - 1; (i <= moves.length) && (j >= 0); i++, j--) {
-            if (board.board[i][j] != null) {
-                break;
-            } else {
-                this.moves[i][j] = true;
-            }
-        }
-        // neg diag down
-        for (int i = x - 1, j = y + 1; (i >= 0) && (j <= moves.length); i--, j++) {
-            if (board.board[i][j] != null) {
-                break;
-            } else {
-                this.moves[i][j] = true;
-            }
-        }
-        // neg diag up
-        for (int i = x - 1, j = y - 1; (i >= 0) && (j >= 0); i--, j--) {
-            if (board.board[i][j] != null) {
-                break;
-            } else {
-                this.moves[i][j] = true;
-            }
-        }
-        //Rook moves
-        for (int i = 0; i < moves.length; i++) {
-            if (y + i <= 8) {
-                if (board.board[x][y + i] != null) {
-                    break;
-                } else {
-                    this.moves[x][y + i] = true;
-                }
-            }
-        }
-        for (int i = 0; i < moves.length; i++) {
-            if (Math.abs(y - i) >= 0) {
-                if (board.board[x][Math.abs(y - i)] != null) {
-                    break;
-                } else {
-                    this.moves[x][y + i] = true;
-                }
-            }
-        }
-        for (int i = 0; i < moves.length; i++) {
-            if (x + i <= 8) {
-                if (board.board[x + i][y] != null) {
-                    break;
-                } else {
-                    this.moves[x + i][y] = true;
-                }
-            }
-        }
-        for (int i = 0; i < moves.length; i++) {
-            if (Math.abs(x - i) >= 0) {
-                if (board.board[Math.abs(x - i)][y] != null) {
-                    break;
-                } else {
-                    this.moves[Math.abs(x - i)][y] = true;
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(bishopMoves[i][j]==true||rookMoves[i][j]==true){
+                    this.moves[i][j] = true;
                 }
             }
         }

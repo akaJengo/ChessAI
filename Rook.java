@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package ChessAI;
+package ChessAI;
 
 /**
  *
@@ -31,9 +31,8 @@ public class Rook extends Piece {
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
-
-        for (int i = 0; i < moves.length; i++) {
-            if (y + i <= 8) {
+        for (int i = 1; i < moves.length; i++) {
+            if (y + i < 8) {
                 if (board.board[x][y + i] != null) {
                     break;
                 } else {
@@ -41,17 +40,17 @@ public class Rook extends Piece {
                 }
             }
         }
-        for (int i = 0; i < moves.length; i++) {
-            if (Math.abs(y - i) >= 0) {
+        for (int i = 1; i < moves.length; i++) {
+            if (y - i >= 0) {
                 if (board.board[x][Math.abs(y - i)] != null) {
                     break;
                 } else {
-                    this.moves[x][y + i] = true;
+                    this.moves[x][y - i] = true;
                 }
             }
         }
-        for (int i = 0; i < moves.length; i++) {
-            if (x + i <= 8) {
+        for (int i = 1; i < moves.length; i++) {
+            if (x + i < 8) {
                 if (board.board[x + i][y] != null) {
                     break;
                 } else {
@@ -59,8 +58,8 @@ public class Rook extends Piece {
                 }
             }
         }
-        for (int i = 0; i < moves.length; i++) {
-            if (Math.abs(x - i) >= 0) {
+        for (int i = 1; i < moves.length; i++) {
+            if (x - i >= 0) {
                 if (board.board[Math.abs(x - i)][y] != null) {
                     break;
                 } else {
