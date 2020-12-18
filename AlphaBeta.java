@@ -12,14 +12,21 @@ public class AlphaBeta {
     AlphaBeta() {
         h = new Heuristics();
     }
-
-    private Board doMove(Board b, boolean[][] m, int fromx, int fromy) {
-        Board temp = new Board();
+    private Board copy(Board b){
+        Board temp = new Board(); 
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 temp.board[i][j] = b.board[i][j];
             }
         }
+        return temp; 
+    }
+
+    private Board doMove(Board b, boolean[][] m, int fromx, int fromy) {
+        Board temp = new Board();
+
+        temp = copy(b); 
+        
         // boolean[][] j = mBoard.piece.moves;
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
@@ -37,11 +44,7 @@ public class AlphaBeta {
 
     private Board undoMove(Board b, int fromx, int fromy, int toX, int toY) {
         Board temp = new Board();
-        for (int i = 0; i < b.board.length; i++) {
-            for (int j = 0; j < b.board[0].length; j++) {
-                temp.board[i][j] = b.board[i][j];
-            }
-        }
+        temp = copy(b); 
         temp.board[fromx][fromy] = temp.board[toX][toY];
         temp.board[toX][toY] = null;
         toX = 0;
@@ -54,7 +57,7 @@ public class AlphaBeta {
             double curr = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth);
             
         }
-        return bestBstate;
+        return bestBstate; 
     }
 
     private double maxValue(Board b, double alpha, double beta, int depth) {
@@ -70,6 +73,7 @@ public class AlphaBeta {
                     double t = minValue(b, alpha, beta, depth - 1);
                     if (t < val) {
                         val = t; 
+                        bestBstate = copy(b); 
                     }
                     b = undoMove(b, i, j, toX, toY);
                     if (val >= beta) {
@@ -96,9 +100,10 @@ public class AlphaBeta {
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
                     b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                    double t = maxValue(b, alpha, beta, depth - 1);
-                    if (t > val) {
-                        val = t; 
+                    double g = maxValue(b, alpha, beta, depth - 1);
+                    if (g > val) {
+                        val = g; 
+                        bestBstate = copy(b); 
                     }
                     b = undoMove(b, i, j, toX, toY);
                     if (val <= alpha) {
