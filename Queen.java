@@ -34,6 +34,7 @@ public class Queen extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         boolean[][] bishopMoves = new boolean[8][8];
         boolean[][] rookMoves = new boolean[8][8];
+        this.moves = new boolean[8][8];
         bishop.getMoves(x, y, board);
         rook.getMoves(x, y, board);
         this.moves = new boolean[8][8];
