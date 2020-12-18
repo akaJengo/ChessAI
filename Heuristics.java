@@ -7,7 +7,9 @@
  */
 public class Heuristics {
 
-    double wScore, bScore;
+    double wScore = 0.4;
+    double bScore;
+
 
     public double evaluate(Board b, boolean isBlack) {
         for (int i = 0; i < b.board.length; i++) {
@@ -22,9 +24,9 @@ public class Heuristics {
             }
         }
         if (isBlack) {
-            return bScore - wScore;
-        } else {
             return wScore - bScore;
+        } else {
+            return bScore - wScore;
         }
     }
 }
