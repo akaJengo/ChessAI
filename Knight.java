@@ -31,37 +31,37 @@ public class Knight extends Piece {
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
         // U R
-        if ((x + 1 <= 8) && (y - 3 >= 0)) {
+        if ((x + 1 < 8) && (y - 3 >= 0)) {
             if (board.board[x + 1][y - 3] == null) {
                 this.moves[x + 1][y - 3] = true;
             }
         }
         // R U
-        if ((x + 3 <= 8) && (y - 1 >= 0)) {
+        if ((x + 3 < 8) && (y - 1 >= 0)) {
             if (board.board[x + 3][y - 3] == null) {
                 this.moves[x + 3][y - 3] = true;
             }
         }
         // R D
-        if ((x + 3 <= 8) && (y + 1 <= 8)) {
+        if ((x + 3 < 8) && (y + 1 < 8)) {
             if (board.board[x + 3][y + 1] == null) {
                 this.moves[x + 3][y + 1] = true;
             }
         }
         // D R
-        if ((x + 1 <= 8) && (y + 3 <= 8)) {
+        if ((x + 1 < 8) && (y + 3 < 8)) {
             if (board.board[x + 1][y + 3] == null) {
                 this.moves[x + 1][y + 3] = true;
             }
         }
         // D L
-        if ((x - 1 >= 0) && (y + 3 <= 8)) {
+        if ((x - 1 >= 0) && (y + 3 < 8)) {
             if (board.board[x - 1][y + 3] == null) {
                 this.moves[x - 1][y + 3] = true;
             }
         }
         // L D
-        if ((x - 3 >= 0) && (y + 1 <= 8)) {
+        if ((x - 3 >= 0) && (y + 1 < 8)) {
             if (board.board[x - 3][y + 1] == null) {
                 this.moves[x - 3][y + 1] = true;
             }
