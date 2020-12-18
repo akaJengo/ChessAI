@@ -5,21 +5,20 @@
  * 
  * 
  */
+package ChessAI;
+
 public class Heuristics {
 
-    double wScore, bScore;
+    int wScore, bScore;
 
-    public double evaluate(Board b, boolean isBlack) {
-        for (int i = 0; i < b.board.length; i++) {
-            for (int j = 0; j < b.board[0].length; j++) {
-                if (b.board[i][j] != null) {
-                    if (b.board[i][j].getColor()) {
-                        wScore += b.board[i][j].getValue();
-                    } else {
-                        bScore += b.board[i][j].getValue();
-                    }
-                }
-            }
+    public int evaluate(Piece b, boolean isBlack) {
+        wScore = 0;
+        bScore = 0;
+        int totalPieces = 100;
+
+        for (int i = 0; i < totalPieces; i++) {
+            wScore += 1;
+            bScore += 1;
         }
         if (isBlack) {
             return bScore - wScore;

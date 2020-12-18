@@ -11,15 +11,15 @@ package ChessAI;
  */
 public class Rules {
     
-    public boolean pawn(boolean first,int x, int y, int x2, int y2){
-        boolean valid = false;
-        if(x==x2&&y==y2+1){
-            return valid == true;
+    public int forewards(boolean isWhite){
+        int y= 0;
+        if(isWhite == true){
+            y++;
         }
-        if(first=true&&x==x2&&y==y2+2){
-            return valid == true;
+        if(isWhite == false){
+            y--;
         }
-        return valid;
+        return y;
     }
     
     public boolean isValid(char unit){
