@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package ChessAI;
 
 /**
  *
@@ -68,9 +68,8 @@ public class Pawn extends Piece {
                 this.moves[x+forewards(isWhite)][y] = false;
             } 
         }catch(Exception e){
-            System.out.println("Promotion!!!");
         }
-        
+
         this.start = false;
         this.moves[x][y] = false;
         return this.moves;

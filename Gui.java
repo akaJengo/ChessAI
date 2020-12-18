@@ -15,6 +15,7 @@ import static javax.swing.SwingConstants.CENTER;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 
+
 /**
  *
  * @author Aidan Larock
@@ -389,6 +390,30 @@ public class Gui extends JFrame {
         if(canMove == true){
             board.board[tox][toy] = board.board[fromx][fromy];
             board.board[fromx][fromy]=null;
+            char type = board.board[tox][toy].getType();
+            System.out.println(type);
+            if(type=='P'){
+                if(tox==0){
+                    Object[] possibilities = {"Queen", "Bishop", "Rook","Knight"};
+                    String promoted = (String)JOptionPane.showInputDialog(null,"Promote Pawn","Customized Dialog",JOptionPane.PLAIN_MESSAGE,null,possibilities,"Queen");
+                    if(promoted.equals("Queen")){
+                        this.places[fromx][fromy] = 'q';
+                        board.board[tox][toy] = new Queen(true);
+                    }
+                    if(promoted.equals("Bishop")){
+                        this.places[fromx][fromy] = 'b';
+                        board.board[tox][toy] = new Bishop(true);
+                    }
+                    if(promoted.equals("Rook")){
+                        this.places[fromx][fromy] = 'r';
+                        board.board[tox][toy] = new Rook(true);
+                    }
+                    if(promoted.equals("Knight")){
+                        this.places[fromx][fromy] = 'k';
+                        board.board[tox][toy] = new Knight(true);
+                    }
+                }
+            }
             this.places[tox][toy] = this.places [fromx][fromy];
             this.places[fromx][fromy] = ' ';
             txtTo.setText("");
