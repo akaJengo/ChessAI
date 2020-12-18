@@ -97,6 +97,9 @@ class MyPanel extends JPanel {
                     if(clicks == 1){
                         fromX = xValue(space);
                         fromY = yValue(spaceH);
+                        if(board.board.board[fromY][fromX]==null){
+                            clicks = 0;
+                        }
                         board.paintSpot();
                     }
                     if(clicks == 2){
