@@ -5,9 +5,15 @@ package ChessAI;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -27,9 +33,6 @@ public class ChessAI {
         reset();
         g = new Gui();
         g.next(places);
-        board = g.getBoard();
-        piece = board.board[6][1];
-        piece.getMoves(6, 1,board);
     }
    
     
@@ -53,22 +56,117 @@ public class ChessAI {
             places[6][i] = 'p';
         }
     }
+    
 
     public static void main(String[] args) {
         ChessAI chess = new ChessAI();
     }
 }
 
+
 class MyPanel extends JPanel {
     Board b;
     Piece p;
     Gui board;
+
+    int fromX;
+    int toX;
+    int fromY;
+    int toY;
+    
+    int clicks = 0;
+
     char[][] places;
-    MyPanel(Gui board) {     
-        //int [] ySpot = {}
+    private MouseListener l;
+    Point2D mouse = new Point2D.Double(0, 0);
+    
+    MyPanel(Gui board) {    
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.board=board;
+        addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent me) {
+                    clicks++;
+                    int x;
+                    int y;
+                    mouse = me.getPoint();
+                    int width = board.panel.getWidth();
+                    int height = board.panel.getHeight();
+                    int space = width/8;
+                    int spaceH = height/8;
+                    if(clicks == 1){
+                        fromX = xValue(space);
+                        fromY = yValue(spaceH);
+                        board.paintSpot();
+                    }
+                    if(clicks == 2){
+                        toX = xValue(space);
+                        toY = yValue(spaceH);
+                        board.submit(board.board,fromY,fromX,toY,toX);
+                        clicks = 0;
+                    }
+                }
+        });
     }
-  
+    
+    private int xValue(int space){
+        int x = 0;
+        if(mouse.getX()<space){
+            x = 0;
+        }
+        else if(mouse.getX()<2*space){
+            x = 1;
+        }
+        else if(mouse.getX()<3*space){
+            x = 2;
+        }
+        else if(mouse.getX()<4*space){
+            x = 3;
+        }
+        else if(mouse.getX()<5*space){
+            x = 4;
+        }
+        else if(mouse.getX()<6*space){
+            x = 5;
+        }
+        else if(mouse.getX()<7*space){
+            x = 6;
+        }
+        else if(mouse.getX()<8*space){
+            x = 7;
+        }
+        return x;
+    }
+    
+    private int yValue(int space){
+        int y = 0;
+        if(mouse.getY()<space){
+            y = 0;
+        }
+        else if(mouse.getY()<2*space){
+            y = 1;
+        }
+        else if(mouse.getY()<3*space){
+            y = 2;
+        }
+        else if(mouse.getY()<4*space){
+            y = 3;
+        }
+        else if(mouse.getY()<5*space){
+            y = 4;
+        }
+        else if(mouse.getY()<6*space){
+            y = 5;
+        }
+        else if(mouse.getY()<7*space){
+            y = 6;
+        }
+        else if(mouse.getY()<8*space){
+            y = 7;
+        }
+        return y;
+    }
+    
     /**
      * paintComponent: Called by test, dots, gui
      * paints the dots and lines specified by Main
@@ -78,14 +176,16 @@ class MyPanel extends JPanel {
      * pan.dot[] : Main specified dots to draw
      * pan.lines[] : Main specified lines to draw
      */
+
     @Override
     public void paintComponent(Graphics g) {
+        
         int width = board.panel.getWidth();
         int height = board.panel.getHeight();
 
         int space = width/8;
         int spaceH = height/8;
-
+        
         int[] xSpot = {0,space,space*2,space*3,space*4,space*5,space*6,space*7};
         int[] ySpot = {0,spaceH,spaceH*2,spaceH*3,spaceH*4,spaceH*5,spaceH*6,spaceH*7};
 
@@ -102,7 +202,7 @@ class MyPanel extends JPanel {
                 temp = 0;
             }
            for(j=temp;j<xSpot.length;j+=2){
-                g.fillRect(xSpot[j], ySpot[i], space, spaceH);
+                    g.fillRect(xSpot[j], ySpot[i], space, spaceH);
             }
         }
         for(int y=0;y<board.places.length;y++){

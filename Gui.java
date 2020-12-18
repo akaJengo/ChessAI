@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package ChessAI;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -113,7 +113,7 @@ public class Gui extends JFrame {
                     txtFrom.setText("");
                     txtTo.setText("");
                 }else{
-                    submit();
+                   // submit();
                 }
             }
         };
@@ -311,7 +311,8 @@ public class Gui extends JFrame {
         txtTo.setHorizontalAlignment(JTextField.CENTER);
         txtTo.setText("");
         txtTo.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
-
+        txtFrom.setVisible(false);
+        txtTo.setVisible(false);
 
         jSeparator3.setOrientation(SwingConstants.VERTICAL);
 
@@ -361,6 +362,8 @@ public class Gui extends JFrame {
         btnReset.setEnabled(false);
         pack();
         setSize(694, 754);
+        txtTo.setEnabled(false);
+        txtFrom.setEnabled(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/icon.png")));
@@ -375,23 +378,9 @@ public class Gui extends JFrame {
     }
     
     // <editor-fold defaultstate="collapsed" desc="submit button">    
-    private void submit() {
-        String from = txtFrom.getText();
-        char letter = from.charAt(0);
-        int numFrom = -1*(Character.getNumericValue(from.charAt(1))-8);
-        int valueFrom = getValue(letter);
-        String to = txtTo.getText();
-        letter = to.charAt(0);
-        int num = -1*(Character.getNumericValue(to.charAt(1))-8);
-        int value = getValue(letter);
-        txtTo.setText("");
-        txtFrom.setText("");
+    public void submit(Board board,int numFrom, int valueFrom, int num,int value) {
         updateSpots(board,numFrom,valueFrom,num,value);
         next(this.places);
-
-        
-        AlphaBeta ab = new AlphaBeta(); 
-        Board bState = ab.alphaBetaSearch(board, 4); 
     } 
     // </editor-fold>  
     
@@ -402,9 +391,16 @@ public class Gui extends JFrame {
             board.board[fromx][fromy]=null;
             this.places[tox][toy] = this.places [fromx][fromy];
             this.places[fromx][fromy] = ' ';
+            txtTo.setText("");
+            txtFrom.setText("");
         }else{
-            System.out.println("Invalid Move");
+            txtTo.setText("Move");
+            txtFrom.setText("Invalid");
         }
+    }
+    
+    public void paintSpot(){
+        panel.repaint();
     }
     
     private boolean getAllMoves(Board board, int fromx, int fromy, int tox, int toy){
@@ -414,6 +410,9 @@ public class Gui extends JFrame {
         piece = board.board[fromx][fromy];
         moves = piece.getMoves(fromx, fromy,board);
         if(moves[tox][toy] == true){
+            canMove = true;
+        }
+        if(start == false){
             canMove = true;
         }
         return canMove;
@@ -429,15 +428,11 @@ public class Gui extends JFrame {
             btnStart.setEnabled(true);
             btnStop.setEnabled(false);
             btnReset.setEnabled(true);
-            txtTo.setEnabled(false);
-            txtFrom.setEnabled(false);
         }else{
             start = true;
             btnStart.setEnabled(false);
             btnReset.setEnabled(false);
             btnStop.setEnabled(true);
-            txtTo.setEnabled(true);
-            txtFrom.setEnabled(true);
         }
     }
     
