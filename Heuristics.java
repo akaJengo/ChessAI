@@ -5,6 +5,8 @@
  * 
  * 
  */
+package ChessAI;
+
 public class Heuristics {
 
     double wScore = 0.4;

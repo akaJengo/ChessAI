@@ -1,7 +1,8 @@
-
 /**
  * AlphaBeta
  */
+package ChessAI;
+
 public class AlphaBeta {
 
     Heuristics h;
