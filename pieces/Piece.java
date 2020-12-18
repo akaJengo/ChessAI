@@ -25,7 +25,6 @@ import ChessAI.Rules;
  */
 public class Piece {
     
-  Rules rule;
   Board board;
   public char type;
   public boolean white;
