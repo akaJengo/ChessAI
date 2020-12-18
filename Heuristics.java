@@ -13,7 +13,14 @@ public class Heuristics {
     double bScore;
 
 
-    public double evaluate(Board b, boolean isBlack) {
+    public double evaluate(Board b) {
+        double score = 0.0; 
+
+        
+        return score;
+    }
+    
+    public double score(Board b){
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
@@ -25,10 +32,6 @@ public class Heuristics {
                 }
             }
         }
-        if (isBlack) {
-            return wScore - bScore;
-        } else {
-            return bScore - wScore;
-        }
+        return wScore - bScore;
     }
 }
