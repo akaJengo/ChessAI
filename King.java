@@ -30,47 +30,28 @@ public class King extends Piece {
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
+        int up;
+        int side;
+        for(int i=-1;i<2;i++){
+            for(int j=-1;j<2;j++){
+                if(y+i>=0&&y+i<8){
+                    if(x+i>=0&&x+i<8){
+                        up = x+i;
+                        side = y+j;
+                        if(board.board[x + i][y + j] == null||board.board[x + i][y + j].white!=this.white){
+                            this.moves[x + i][y + j] = true;
+                        }
+                    }
+                }
+            }
+        }
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                System.out.print(this.moves[i][j]+" ");
+            }
+            System.out.println("");
+        }
 
-        if ((x + 1 <= 8) && (y - 1 >= 0)) {
-            if (board.board[x + 1][y - 1] == null||board.board[x + 1][y - 1].white!=this.white) {
-                this.moves[x + 1][y - 1] = true;
-            }
-        }
-        if ((x + 1) <= 8) {
-            if (board.board[x + 1][y] == null||board.board[x + 1][y].white!=this.white) {
-                this.moves[x + 1][y] = true;
-            }
-        }
-        if ((x + 1 <= 8) && (y + 1 <= 8)) {
-            if (board.board[x + 1][y + 1] == null||board.board[x + 1][y + 1].white!=this.white) {
-                this.moves[x + 1][y + 1] = true;
-            }
-        }
-        if ((y + 1) <= 8) {
-            if (board.board[x][y + 1] == null||board.board[x][y + 1].white!=this.white) {
-                this.moves[x][y + 1] = true;
-            }
-        }
-        if ((x - 1 >= 0) && (y + 1 <= 8)) {
-            if (board.board[x - 1][y + 1] == null||board.board[x - 1][y + 1].white!=this.white) {
-                this.moves[x - 1][y + 1] = true;
-            }
-        }
-        if ((x - 1) >= 0) {
-            if (board.board[x - 1][y] == null||board.board[x + 1][y].white!=this.white) {
-                this.moves[x - 1][y] = true;
-            }
-        }
-        if ((x - 1 >= 0) && (y - 1 >= 0)) {
-            if (board.board[x - 1][y - 1] == null||board.board[x - 1][y - 1].white!=this.white) {
-                this.moves[x - 1][y - 1] = true;
-            }
-        }
-        if ((y - 1) >= 0) {
-            if (board.board[x][y - 1] == null||board.board[x][y - 1].white!=this.white) {
-                this.moves[x][y - 1] = true;
-            }
-        }
         return this.moves;
     }
 }
