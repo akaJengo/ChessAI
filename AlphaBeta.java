@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * AlphaBeta
@@ -8,6 +7,7 @@ public class AlphaBeta {
     Heuristics h;
     Board bestBstate;
     int toX, toY;
+    double val; 
 
     AlphaBeta() {
         h = new Heuristics();
@@ -50,43 +50,64 @@ public class AlphaBeta {
     }
 
     public Board alphaBetaSearch(Board b, int depth) {
-        double val = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth);
-        return b;
+        for (int i = 0; i < b.board.length; i++) {
+            double curr = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth);
+            
+        }
+        return bestBstate;
     }
 
     private double maxValue(Board b, double alpha, double beta, int depth) {
-        double val = Double.MIN_VALUE;
+        val = Double.MIN_VALUE;
         if (depth == 0) {
             return h.evaluate(b, true);
         }
         for (int i = 0; i < b.board.length; i++) { // need to be for each child of the node, i.e for move in moves.
             for (int j = 0; j < b.board[0].length; j++) {
-                b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                val = Math.max(val, minValue(b, alpha, beta, depth - 1));
-                b = undoMove(b, i, j, toX, toY);
-                if (val >= beta) {
-                    return val;
+                if (b.board[i][j] != null) {
+                    try {
+                        b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                        val = Math.max(val, minValue(b, alpha, beta, depth - 1));
+                        b = undoMove(b, i, j, toX, toY);
+
+                        if (val >= beta) {
+                            //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                            //undoMove(b, i, j, toX, toY);
+                            return val;
+                        }
+                        if (alpha < val) {
+                            alpha = val; 
+                        }
+                    } catch (Exception e) {}
                 }
-                alpha = Math.max(alpha, val);
             }
         }
         return val;
     }
 
     private double minValue(Board b, double alpha, double beta, int depth) {
-        double val = Double.MAX_VALUE;
+        val = Double.MAX_VALUE;
         if (depth == 0) {
             return h.evaluate(b, false);
         }
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
-                b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
-                b = undoMove(b, i, j, toX, toY);
-                if (val <= alpha) {
-                    return val;
+                if (b.board[i][j] != null) {
+                    try {
+                        b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                        val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
+                        b = undoMove(b, i, j, toX, toY);
+                        if (val <= alpha) {
+                            //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                            //undoMove(b, i, j, toX, toY);
+                            return val;
+                        }
+                        if (beta < val) {
+                            beta = val; 
+                        }
+                    } catch (Exception e) { }
+                    
                 }
-                beta = Math.min(beta, val);
             }
         }
         return val;
