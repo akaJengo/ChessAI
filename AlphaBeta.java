@@ -60,25 +60,26 @@ public class AlphaBeta {
     private double maxValue(Board b, double alpha, double beta, int depth) {
         val = Double.MIN_VALUE;
         if (depth == 0) {
-            return h.evaluate(b, true);
+            double r = h.evaluate(b, true);
+            return r;
         }
         for (int i = 0; i < b.board.length; i++) { // need to be for each child of the node, i.e for move in moves.
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
-                    try {
-                        b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                        val = Math.max(val, minValue(b, alpha, beta, depth - 1));
-                        b = undoMove(b, i, j, toX, toY);
-
-                        if (val >= beta) {
-                            //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                            //undoMove(b, i, j, toX, toY);
-                            return val;
-                        }
-                        if (alpha < val) {
-                            alpha = val; 
-                        }
-                    } catch (Exception e) {}
+                    b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                    double t = minValue(b, alpha, beta, depth - 1);
+                    if (t < val) {
+                        val = t; 
+                    }
+                    b = undoMove(b, i, j, toX, toY);
+                    if (val >= beta) {
+                        //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                        //undoMove(b, i, j, toX, toY);
+                        return val;
+                    }
+                    if (alpha < val) {
+                        alpha = val; 
+                    }
                 }
             }
         }
@@ -88,25 +89,26 @@ public class AlphaBeta {
     private double minValue(Board b, double alpha, double beta, int depth) {
         val = Double.MAX_VALUE;
         if (depth == 0) {
-            return h.evaluate(b, false);
+            double r = h.evaluate(b, false);
+            return r; 
         }
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
-                    try {
-                        b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                        val = Math.min(val, maxValue(b, alpha, beta, depth - 1));
-                        b = undoMove(b, i, j, toX, toY);
-                        if (val <= alpha) {
-                            //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
-                            //undoMove(b, i, j, toX, toY);
-                            return val;
-                        }
-                        if (beta < val) {
-                            beta = val; 
-                        }
-                    } catch (Exception e) { }
-                    
+                    b = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                    double t = maxValue(b, alpha, beta, depth - 1);
+                    if (t > val) {
+                        val = t; 
+                    }
+                    b = undoMove(b, i, j, toX, toY);
+                    if (val <= alpha) {
+                        //bestBstate = doMove(b, b.board[i][j].getMoves(i, j, b), i, j);
+                        //undoMove(b, i, j, toX, toY);
+                        return val;
+                    }
+                    if (beta < val) {
+                        beta = val; 
+                    }
                 }
             }
         }
