@@ -3,18 +3,35 @@
  */
 package ChessAI;
 
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class AlphaBeta {
 
+    Node head;          // Initial puzzle node
+    
     Heuristics h;
     Board bestBstate;
-    int toX, toY;
-    double val; 
+    
+    Queue<Board> q;      // Queues and Array Lists for search algoritms
 
-    AlphaBeta() {
+
+    AlphaBeta(Board b) {
         h = new Heuristics();
+        q = new LinkedList<>();
+        allMoves(b);
     }
-    private Board copy(Board b){
-        Board temp = new Board(); 
+    
+    private void allMoves(Board b){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                doMove(b,i,j);
+            }
+        }
+    }
+    
+    private Board copy(Board b, Board temp){
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 temp.board[i][j] = b.board[i][j];
@@ -23,40 +40,52 @@ public class AlphaBeta {
         return temp; 
     }
 
-    private Board doMove(Board b, boolean[][] m, int fromx, int fromy) {
-        Board temp = new Board();
-
-        temp = copy(b); 
-        
-        // boolean[][] j = mBoard.piece.moves;
-        for (int i = 0; i < b.board.length; i++) {
-            for (int j = 0; j < b.board[0].length; j++) {
-                if (m[i][j]) {
-                    temp.board[i][j] = temp.board[fromx][fromy];
-                    temp.board[fromx][fromy] = null;
-                    toX = i;
-                    toY = j;
-                    break;
+    private void doMove(Board b, int fromx, int fromy) {
+        Board newB = null;
+        boolean[][] best = null;
+        best = b.board[fromx][fromy].getMoves(fromx, fromy, newB);
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(best[i][j]==true){
+                    newB = copy(b,newB);
+                    newB.board[fromx][fromy] = newB.board[i][j];
+                    newB.board[i][j] = null;
+                    q.add(newB);
                 }
             }
         }
-        return temp;
+    }
+    
+    private void doMoves(boolean[][] allMoves){
+        
+    }
+    
+    private boolean[][] bestMove(Board b,int x,int y){
+        double bestScore = 0.0;
+        boolean[][] best = null;
+        best = b.board[x][y].getMoves(x, y, b);
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(best[i][j]==true){
+                    Board tempB = new Board();
+                    tempB = copy(b,tempB);
+                    h = new Heuristics();
+                    double score = h.evaluate(x,y,i,j,tempB);
+                    if(score>bestScore){
+                        bestScore = score;
+                        b.board[x][y] = b.board[i][j];
+                        b.board[i][j] = null;
+                    }
+                }
+            }
+        }
+        return best;
     }
 
-    private Board undoMove(Board b, int fromx, int fromy, int toX, int toY) {
-        Board temp = new Board();
-        temp = copy(b); 
-        temp.board[fromx][fromy] = temp.board[toX][toY];
-        temp.board[toX][toY] = null;
-        toX = 0;
-        toY = 0;
-        return temp;
-    }
 
     public Board alphaBetaSearch(Board b, int depth) {
         for (int i = 0; i < b.board.length; i++) {
-            double curr = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth);
-            
+            double curr = maxValue(b, Double.MIN_VALUE, Double.MAX_VALUE, depth); 
         }
         return bestBstate; 
     }
