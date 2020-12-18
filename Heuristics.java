@@ -12,15 +12,22 @@ public class Heuristics {
     double wScore = 0.4;
     double bScore;
 
-
     public double evaluate(Board b) {
-        double score = 0.0; 
-
-        
-        return score;
+        for (int i = 0; i < b.board.length; i++) {
+            for (int j = 0; j < b.board[0].length; j++) {
+                if (b.board[i][j] != null) {
+                    if (b.board[i][j].getColor()) {
+                        wScore += b.board[i][j].getValue();
+                    } else {
+                        bScore += b.board[i][j].getValue();
+                    }
+                }
+            }
+        }
+        return bScore - wScore;
     }
-    
-    public double score(Board b){
+
+    public double score(Board b) {
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
