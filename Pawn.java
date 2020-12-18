@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ChessAI;
+
 
 /**
  *
@@ -53,7 +53,6 @@ public class Pawn extends Piece {
             if(board.board[x+forewards(isWhite)][y+1]!=null && board.board[x+forewards(isWhite)][y+1].white!=this.white){
                 this.moves[x+forewards(isWhite)][y+1] = true;
             }
-            System.out.println(board.board[x+forewards(isWhite)][y-1].white);
         }catch(Exception e){
             
         }
