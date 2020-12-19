@@ -36,6 +36,7 @@ public class Gui extends JFrame {
     Board board;
     Piece piece;
     ChessAI main;
+    int depth;
     boolean start = false;
     char[][] places;
     // <editor-fold defaultstate="collapsed" desc="gui variables">
@@ -79,6 +80,7 @@ public class Gui extends JFrame {
      * Constructor to the main class.
      */
     public Gui() {
+        depth = 0;
         build();
         board = new Board();
         board.addPieces();
@@ -396,7 +398,7 @@ public class Gui extends JFrame {
         boolean playerMove = updateSpots(board,numFrom,valueFrom,num,value);
         if(playerMove){
             if(start == true){
-                AlphaBeta AI = new AlphaBeta(board); 
+                AlphaBeta AI = new AlphaBeta(board, depth); 
                 Board ai = AI.getBest();
                 updateAI(board, ai);
                 next(this.places);
@@ -510,6 +512,8 @@ public class Gui extends JFrame {
             btnReset.setEnabled(true);
         } else {
             start = true;
+            String aiDepth = JOptionPane.showInputDialog("enter a value for AI depth 0-10:");
+            depth = Integer.parseInt(aiDepth);
             btnStart.setEnabled(false);
             btnReset.setEnabled(false);
             btnStop.setEnabled(true);
