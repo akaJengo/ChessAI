@@ -398,9 +398,28 @@ public class Gui extends JFrame {
         boolean playerMove = updateSpots(board,numFrom,valueFrom,num,value);
         if(playerMove){
             if(start == true){
-                AlphaBeta AI = new AlphaBeta(board, depth); 
-                Board ai = AI.getBest();
+                AlphaBeta AI = new AlphaBeta(); 
+                Board ai = AI.getBest(board, depth);
                 updateAI(board, ai);
+                for(int i=0;i<8;i++){
+                    for(int j=0;j<8;j++){
+                        this.places[i][j] = ' ';
+                    }
+                }
+                for(int i=0;i<8;i++){
+                    for(int j=0;j<8;j++){
+                        try{
+                        char c = ai.board[i][j].getType();
+                        boolean col = ai.board[i][j].white;
+                        if(col==true){
+                           c = Character.toLowerCase(c); 
+                        }
+                            this.places[i][j] = c;
+                        }catch(Exception e){
+                            this.places[i][j] = ' ';
+                        }
+                    }
+                }
                 next(this.places);
             }else{
                 next(this.places);

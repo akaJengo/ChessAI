@@ -19,14 +19,19 @@ public class AlphaBeta {
     Queue<Board> qW;      // Queues and Array Lists for search algoritms
 
 
-    public AlphaBeta(Board b) {
-        h = new Heuristics();
+    public AlphaBeta() {
+
+    }
+    
+    
+    public Board getBest(Board b,int maxDepth){
+                h = new Heuristics();
         q = new LinkedList<>();
         qW = new LinkedList<>();
         head = new Node(b,0.0);
         Node save = head;
         int depth = 0;
-        while(depth<8){
+        while(depth<maxDepth){
             if(depth % 2 == 0){
                 allMoves(b,false);
             }else{
@@ -42,15 +47,12 @@ public class AlphaBeta {
             depth++;
             }
         }
-        Node best = new Node(null,0.0);
-        best = findBestOutput(save,0,0,best);
+        Node best;
+        best = findBestOutput(save,0,0);
+        
         while(best.parent.parent!=null){
             best = best.parent;
         }
-        
-    }
-    
-    public Board getBest(){
         return best.board;
     }
     
@@ -130,20 +132,20 @@ public class AlphaBeta {
         }
     }
 
-    private Node findBestOutput(Node save,double score, double bestScore, Node best) {
+    private Node findBestOutput(Node save,double score, double bestScore) {
         if (save == null){ 
             return best; 
         }
 
         score = score+save.score;
   
-        findBestOutput(save.child, score,bestScore,best); 
+        findBestOutput(save.child, score,bestScore); 
         if(Math.abs(score)>bestScore){
             bestScore = Math.abs(score);
             best = save;
         }
         score = 0;
-        findBestOutput(save.sibling, score,bestScore,best);
+        findBestOutput(save.sibling, score,bestScore);
         return best;
     }
 
