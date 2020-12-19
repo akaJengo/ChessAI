@@ -531,7 +531,7 @@ public class Gui extends JFrame {
             btnReset.setEnabled(true);
         } else {
             start = true;
-            String aiDepth = JOptionPane.showInputDialog("enter a value for AI depth 0-10:");
+            String aiDepth = JOptionPane.showInputDialog("enter a value for AI depth 1-2:");
             depth = Integer.parseInt(aiDepth);
             btnStart.setEnabled(false);
             btnReset.setEnabled(false);

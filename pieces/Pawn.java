@@ -68,7 +68,7 @@ public class Pawn extends Piece {
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
-        if (start == true) {
+        if (this.start == true) {
             if (board.board[x + forewards(isWhite)][y] == null) {
                 this.moves[x][y] = false;
                 this.moves[x + forewards(isWhite)][y] = true;
