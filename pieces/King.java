@@ -62,8 +62,6 @@ public class King extends Piece {
     @Override
     public boolean[][] getMoves(int x, int y, Board board) {
         this.moves = new boolean[8][8];
-        int up;
-        int side;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (y + i >= 0 && y + i < 8) {
