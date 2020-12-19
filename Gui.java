@@ -393,50 +393,49 @@ public class Gui extends JFrame {
      * @param valueFrom
      * @param num
      * @param value
-     */  
-    public void submit(Board board,int numFrom, int valueFrom, int num,int value) {
-        boolean playerMove = updateSpots(board,numFrom,valueFrom,num,value);
-        if(playerMove){
-            if(start == true){
-                AlphaBeta AI = new AlphaBeta(); 
+     */
+    public void submit(Board board, int numFrom, int valueFrom, int num, int value) {
+        boolean playerMove = updateSpots(board, numFrom, valueFrom, num, value);
+        if (playerMove) {
+            if (start == true) {
+                AlphaBeta AI = new AlphaBeta();
                 Board ai = AI.getBest(board, depth);
                 updateAI(board, ai);
-                for(int i=0;i<8;i++){
-                    for(int j=0;j<8;j++){
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
                         this.places[i][j] = ' ';
                     }
                 }
-                for(int i=0;i<8;i++){
-                    for(int j=0;j<8;j++){
-                        try{
-                        char c = ai.board[i][j].getType();
-                        boolean col = ai.board[i][j].white;
-                        if(col==true){
-                           c = Character.toLowerCase(c); 
-                        }
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        try {
+                            char c = ai.board[i][j].getType();
+                            boolean col = ai.board[i][j].white;
+                            if (col == true) {
+                                c = Character.toLowerCase(c);
+                            }
                             this.places[i][j] = c;
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             this.places[i][j] = ' ';
                         }
                     }
                 }
                 next(this.places);
-            }else{
+            } else {
                 next(this.places);
             }
-        }      
-    } 
-    // </editor-fold> 
-    
-    public void updateAI(Board board, Board ai){
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
+        }
+    }
+    // </editor-fold>
+
+    public void updateAI(Board board, Board ai) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 board.board[i][j] = ai.board[i][j];
             }
         }
     }
-    
-    
+
     /**
      * This method updates the spots from an original posistion to a new posistion.
      * 
@@ -446,46 +445,47 @@ public class Gui extends JFrame {
      * @param tox   the new x posistion.
      * @param toy   the new y posistion.
      */
-    
-    public boolean updateSpots(Board board, int fromx, int fromy, int tox, int toy){
-        boolean canMove = getAllMoves(board, fromx,fromy,tox,toy);
-        if(canMove == true){
+
+    public boolean updateSpots(Board board, int fromx, int fromy, int tox, int toy) {
+        boolean canMove = getAllMoves(board, fromx, fromy, tox, toy);
+        if (canMove == true) {
             board.board[tox][toy] = board.board[fromx][fromy];
-            board.board[fromx][fromy]=null;
+            board.board[fromx][fromy] = null;
             char type = board.board[tox][toy].getType();
-            if(type=='P'){
-                if(tox==0){
-                    Object[] possibilities = {"Queen", "Bishop", "Rook","Knight"};
-                    String promoted = (String)JOptionPane.showInputDialog(null,"Promote Pawn","Customized Dialog",JOptionPane.PLAIN_MESSAGE,null,possibilities,"Queen");
-                    if(promoted.equals("Queen")){
+            if (type == 'P') {
+                if (tox == 0) {
+                    Object[] possibilities = { "Queen", "Bishop", "Rook", "Knight" };
+                    String promoted = (String) JOptionPane.showInputDialog(null, "Promote Pawn", "Customized Dialog",
+                            JOptionPane.PLAIN_MESSAGE, null, possibilities, "Queen");
+                    if (promoted.equals("Queen")) {
                         this.places[fromx][fromy] = 'q';
                         board.board[tox][toy] = new Queen(true);
                     }
-                    if(promoted.equals("Bishop")){
+                    if (promoted.equals("Bishop")) {
                         this.places[fromx][fromy] = 'b';
                         board.board[tox][toy] = new Bishop(true);
                     }
-                    if(promoted.equals("Rook")){
+                    if (promoted.equals("Rook")) {
                         this.places[fromx][fromy] = 'r';
                         board.board[tox][toy] = new Rook(true);
                     }
-                    if(promoted.equals("Knight")){
+                    if (promoted.equals("Knight")) {
                         this.places[fromx][fromy] = 'k';
                         board.board[tox][toy] = new Knight(true);
                     }
                 }
             }
-            this.places[tox][toy] = this.places [fromx][fromy];
+            this.places[tox][toy] = this.places[fromx][fromy];
             this.places[fromx][fromy] = ' ';
             txtTo.setText("");
             txtFrom.setText("");
-        }else{
+        } else {
             txtTo.setText("Move");
             txtFrom.setText("Invalid");
         }
         return canMove;
     }
-    
+
     /**
      * Checks if a move is possible to do.
      * 
@@ -495,21 +495,20 @@ public class Gui extends JFrame {
      * @param tox   the new x posistion.
      * @param toy   the new y posistion.
      */
-    private boolean getAllMoves(Board board, int fromx, int fromy, int tox, int toy){
+    private boolean getAllMoves(Board board, int fromx, int fromy, int tox, int toy) {
         boolean[][] moves;
         boolean canMove = false;
         // get moves from peices using
         piece = board.board[fromx][fromy];
-        moves = piece.getMoves(fromx, fromy,board);
-        if(moves[tox][toy] == true && piece.white==true){
+        moves = piece.getMoves(fromx, fromy, board);
+        if (moves[tox][toy] == true && piece.white == true) {
             canMove = true;
         }
-        if(start == false){
+        if (start == false) {
             canMove = true;
         }
         return canMove;
     }
-    
 
     /**
      * A helper function to fetch the current board state.
