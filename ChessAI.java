@@ -16,6 +16,25 @@ import ChessAI.pieces.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+
+/**
+ * @author Aidan Larock
+ * @author Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #6402176
+ * @assignment 4 - Group Project
+ * 
+ * @version 2.3
+ * 
+ * Chess AI and MyPanel
+ * 
+ * ChessAI creates and populates the board and pieces for the chess engine
+ * it also calls the GUI 
+ * 
+ * MyPanel draws the chess board and pieces
+ * as well as gets the use inputs from mouse clicks
+ * 
+ */
 public class ChessAI {
 
     Gui g;
@@ -34,7 +53,10 @@ public class ChessAI {
         g.next(places);
     }
    
-    
+    /**
+     * Reset 
+     * populates the user interface chess board
+     */
     private void reset(){
         char[] spots = {'r','k','b','q','l','b','k','r'};
         for(int i=0;i<places.length;i++){
@@ -62,7 +84,22 @@ public class ChessAI {
     }
 }
 
-
+/**
+ * @author Aidan Larock
+ * @author Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #6402176
+ * @assignment 4 - Group Project
+ * 
+ * @version 3.6
+ * 
+ * MyPanel
+ * 
+ * MyPanel draws the chess board and pieces
+ * as well as gets the use inputs from mouse clicks
+ * uses icons to draw the chess pieces
+ * 
+ */
 class MyPanel extends JPanel {
     Board b;
     Piece p;
@@ -73,15 +110,21 @@ class MyPanel extends JPanel {
     int fromY;
     int toY;
     
+    // counts current click
     int clicks = 0;
 
     char[][] places;
+    // mouse listener 
     private MouseListener l;
+    // gets mouse cursor points
     Point2D mouse = new Point2D.Double(0, 0);
     
     MyPanel(Gui board) {    
         this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.board=board;
+        
+        // Mouse listener for mouse clicks
+        
         addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent me) {
@@ -93,6 +136,7 @@ class MyPanel extends JPanel {
                     int height = board.panel.getHeight();
                     int space = width/8;
                     int spaceH = height/8;
+                    // gets the clicks of mouse buttons
                     if(clicks == 1){
                         fromX = xValue(space);
                         fromY = yValue(spaceH);
@@ -100,6 +144,7 @@ class MyPanel extends JPanel {
                             clicks = 0;
                         }
                     }
+                    // on second click, send move
                     if(clicks == 2){
                         toX = xValue(space);
                         toY = yValue(spaceH);
@@ -110,6 +155,12 @@ class MyPanel extends JPanel {
         });
     }
     
+    /**
+     * xValue
+     * gets the square which the user clicked
+     * @param space
+     * @return x coordinate of square (0-7)
+     */
     private int xValue(int space){
         int x = 0;
         if(mouse.getX()<space){
@@ -139,6 +190,12 @@ class MyPanel extends JPanel {
         return x;
     }
     
+    /**
+     * yValue
+     * gets the square which the user clicked
+     * @param space
+     * @return y coordinate of square (0-7)
+     */
     private int yValue(int space){
         int y = 0;
         if(mouse.getY()<space){
@@ -169,13 +226,12 @@ class MyPanel extends JPanel {
     }
     
     /**
-     * paintComponent: Called by test, dots, gui
-     * paints the dots and lines specified by Main
-     * Synchronized so other threads don't call paint 
-     * when paintComponent is working on 1 solution.
+     * paintComponent
+     * paints the chess board and pieces
      * 
-     * pan.dot[] : Main specified dots to draw
-     * pan.lines[] : Main specified lines to draw
+     * xSpot[] : x coordinates of chess board
+     * ySpot[] : xy coordinates of chess board
+     * image: the image of piece to draw
      */
 
     @Override
@@ -215,6 +271,13 @@ class MyPanel extends JPanel {
         }
     }
 
+    /**
+     * getPiece
+     * 
+     * this methods returns the correct image depending 
+     * on the piece.
+     * @param peice
+     */
     private BufferedImage getPiece(char peice) {
         BufferedImage image = null;
         switch (peice) {
