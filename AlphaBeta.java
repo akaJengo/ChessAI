@@ -31,10 +31,6 @@ public class AlphaBeta {
     Queue<Board> q; // queue for all black moves
     Queue<Board> qW; // queue for all white moves
 
-    public AlphaBeta() {
-
-    }
-
     /**
      * This method gets the best board state for the AI
      * 
