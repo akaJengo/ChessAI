@@ -1,17 +1,35 @@
+package ChessAI;
+
 /**
- * Heuristics Berliner, Hans (1999), The System: A World Champion's Approach to
- * Chess, Gambit Publications, ISBN 1-901983-10-2 P 1.0 K 3.2 B 3.33 R 5.1 Q 8.8
- * King 4.0
+ * This class evaluates a heuristic for the current board. The evaluation
+ * functions calculate the sum of the piece value, which is distinguished by
+ * colour. The returning score is dependant on the colour, if it's black to
+ * move, the returning score is the evaluation of the black pieces deducted by
+ * the evaluation of whites score, the inverse is also true(white to move,
+ * whites score deducted by blacks score).
  * 
  * 
+ * @author Aidan Larock
+ * @author Michael Wisniewski
+ * @studentNumber #6186076
+ * @studentNumber #6402176
+ * @assignment 4 - Group Project
+ * 
+ * @version 1.2
  */
 public class Heuristics {
 
     double wScore = 0.4;
     double bScore;
 
-
-    public double evaluate(Board b, boolean isBlack) {
+    /**
+     * Calculates the respective colour score based on piece value. Then returns the
+     * maximizing score for black.
+     * 
+     * @param b the current boardstate to evaluate.
+     * @return the black score minus whites score.
+     */
+    public double evaluate(Board b) {
         for (int i = 0; i < b.board.length; i++) {
             for (int j = 0; j < b.board[0].length; j++) {
                 if (b.board[i][j] != null) {
@@ -23,10 +41,6 @@ public class Heuristics {
                 }
             }
         }
-        if (isBlack) {
-            return wScore - bScore;
-        } else {
-            return bScore - wScore;
-        }
+        return bScore - wScore;
     }
 }
