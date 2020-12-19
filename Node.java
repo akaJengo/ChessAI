@@ -1,19 +1,20 @@
 package ChessAI;
 
 /**
- *
- * @author        Aidan Larock 
+ * @author Aidan Larock
+ * @author Michael Wisniewski
  * @studentNumber #6186076
- * @assignment    1
- * @date          19/10/2020
+ * @studentNumber #6402176
+ * @assignment 4 - Group Project
+ * 
+ * @version 5.2
+ * @see AlphaBeta
  * 
  * Node
  * A class which contains information about the
- * Node object. Each node stores a 2D array called puzzle and has variables:
+ * Node object. Each node stores a Board object:
  * 
- * depth: The distance away the node is from the beginning node (aka number of parent nodes apart)
- * distance: Used in the A* heuristic search, this is the depth + calculated distance from the end goal (using Manhattan algorithm)
- * visited: Whether the node has been visited or not
+ * score: score of board state
  * 
  * parent: The Previous Node
  * child: The Next Node
@@ -24,10 +25,8 @@ public class Node {
     
     Board board;
 
-    int depth;
     double score;
 
-    
     Node parent;
     Node child;
     Node sibling;

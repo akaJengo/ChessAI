@@ -6,7 +6,6 @@
 package ChessAI.pieces;
 
 import ChessAI.Board;
-import ChessAI.Rules;
 
 /**
  * Piece

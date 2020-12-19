@@ -1,4 +1,3 @@
-
 package ChessAI;
 
 import ChessAI.pieces.*;
